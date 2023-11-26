@@ -1,0 +1,58 @@
+{
+  "reservas": [
+    {
+      "id": 1,
+      "nombre": "Piero",
+      "telefono": "1133688942",
+      "departamento": "Mansilla",
+      "fechaCheckIn": "2023-11-26",
+      "horaCheckIn": "15:30",
+      "fechaCheckOut": "2023-11-30",
+      "horaCheckOut": "",
+      "cantidadHuespedes": 4,
+      "moneda": "ARS",
+      "precioPorDia": 40000,
+      "senia": 6000,
+      "total": 160000,
+      "restaPagar": 154000,
+      "fechaReserva": "2023-11-26",
+      "cantidadDias": 4
+    },
+    {
+      "id": 2,
+      "nombre": "Melina Benitez",
+      "telefono": "1133688942",
+      "departamento": "Corrientes",
+      "fechaCheckIn": "2023-11-26",
+      "horaCheckIn": "16:00",
+      "fechaCheckOut": "2023-11-30",
+      "horaCheckOut": "",
+      "cantidadHuespedes": 4,
+      "moneda": "ARS",
+      "precioPorDia": 45000,
+      "senia": 5000,
+      "total": 180000,
+      "restaPagar": 175000,
+      "fechaReserva": "2023-11-26",
+      "cantidadDias": 4
+    },
+    {
+      "id": 3,
+      "nombre": "juan isola",
+      "telefono": "1234567",
+      "departamento": "Billinghurst",
+      "fechaCheckIn": "2023-11-20",
+      "horaCheckIn": "17:00",
+      "fechaCheckOut": "2023-11-29",
+      "horaCheckOut": "",
+      "cantidadHuespedes": 4,
+      "moneda": "ARS",
+      "precioPorDia": 43000,
+      "senia": 10000,
+      "total": 387000,
+      "restaPagar": 377000,
+      "fechaReserva": "2023-11-26",
+      "cantidadDias": 9
+    }
+  ]
+}

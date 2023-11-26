@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./partials/head') %>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <!-- header -->
+    <header><%- include('./partials/header') %></header>
+
+    <main class="flex-grow-1 d-flex justify-content-center align-items-center">
+        <!-- Contenedor del Formulario con Título -->
+        <div class="container d-flex flex-column align-items-center">
+            <!-- Título del Formulario -->
+            <h2 class="mb-4 mt-4">Registrar Nueva Reserva</h2>
+
+            <!-- Formulario de Reserva -->
+            <form id="formulario-reserva" method="post" action="/nueva" class="my-4 p-4 border rounded w-75"
+                style="background-color: #f8f9fa;">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre de contacto:</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Teléfono de contacto:</label>
+                    <input type="tel" id="telefono" name="telefono" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="departamento" class="form-label">Departamento:</label>
+                    <select id="departamento" name="departamento" class="form-select" required>
+                        <option value="Mansilla">Mansilla</option>
+                        <option value="Corrientes">Corrientes</option>
+                        <option value="Billinghurst">Billinghurst</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="fechaCheckIn" class="form-label">Fecha de Check-In:</label>
+                    <input type="date" id="fechaCheckIn" name="fechaCheckIn" class="form-control" required>
+                </div>
+            
+                <div class="mb-3">
+                    <label for="horaCheckIn" class="form-label">Horario de Check-In (opcional):</label>
+                    <input type="time" id="horaCheckIn" name="horaCheckIn" class="form-control">
+                </div>
+            
+                <div class="mb-3">
+                    <label for="fechaCheckOut" class="form-label">Fecha de Check-Out:</label>
+                    <input type="date" id="fechaCheckOut" name="fechaCheckOut" class="form-control" required>
+                </div>
+            
+                <div class="mb-3">
+                    <label for="horaCheckOut" class="form-label">Horario de Check-Out (opcional):</label>
+                    <input type="time" id="horaCheckOut" name="horaCheckOut" class="form-control">
+                </div>
+            
+                <!-- Campo oculto para la cantidad de días -->
+                <input type="hidden" id="cantidadDias" name="cantidadDias">
+
+                <div class="mb-3">
+                    <label for="cantidadHuespedes" class="form-label">Cantidad de huéspedes (max 4):</label>
+                    <input type="number" id="cantidadHuespedes" name="cantidadHuespedes" class="form-control" min="1"
+                        max="4" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="moneda" class="form-label">Moneda:</label>
+                    <select id="moneda" name="moneda" class="form-select" required>
+                        <option value="USD">Dólares estadounidenses</option>
+                        <option value="ARS">Pesos argentinos</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="precioPorDia" class="form-label">Precio por Día:</label>
+                    <input type="number" id="precioPorDia" name="precioPorDia" class="form-control" min="0" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="senia" class="form-label">Monto de Seña pagada (solo números):</label>
+                    <input type="text" id="senia" name="senia" pattern="[0-9]+" class="form-control"
+                        placeholder="Monto de la señal (opcional)">
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Registrar Reserva</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Scripts de Bootstrap y cualquier otro script necesario -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Agregar cualquier otro script que necesites -->
+
+</body>
+
+</html>
