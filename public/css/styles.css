@@ -121,3 +121,19 @@ hr {
 .form-control:not(:placeholder-shown) {
     font-size: 16px !important; /* Ajusta según sea necesario */
 }
+.navbar>.container-fluid{
+  margin-left: 5rem !important;
+  margin-right: 5rem !important;
+}
+.nav-link {
+  margin-left: 2rem !important;
+  font-weight: 400 !important;
+  color: white !important;
+}
+.dropdown-item {
+  font-size: 15px !important;
+}
+.navbar-expand-lg .navbar-nav .dropdown-menu{
+  margin-left: 2rem !important;
+  font-weight: 800 !important;
+}
