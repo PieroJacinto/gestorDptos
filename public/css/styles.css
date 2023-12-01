@@ -137,3 +137,7 @@ hr {
   margin-left: 2rem !important;
   font-weight: 800 !important;
 }
+#calendar .fc-event-title {
+  font-size: 16px; /* Tamaño de la letra deseado */
+  cursor: pointer;
+}
