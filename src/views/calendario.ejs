@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <style>
+      /* Estilos adicionales para el evento */
+      #calendar .fc-event-title {
+        font-size: 16px; /* Tamaño de la letra deseado */
+        cursor: pointer;
+      }
+    </style>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          events: [
+            <% for (var i = 0; i < eventosDepartamento.length; i++) { %>
+              {
+                title: '<%= eventosDepartamento[i].title %>',
+                start: '<%= eventosDepartamento[i].start %>',
+                end: '<%= eventosDepartamento[i].end %>',
+                id: '<%= eventosDepartamento[i].id %>' // Asegúrate de tener una propiedad 'id' en tus eventos
+              }<% if (i < eventosDepartamento.length - 1) { %>,<% } %>
+            <% } %>
+          ],
+          eventClick: function(info) {
+            // Redirige a la vista de detalle con el ID del evento
+            window.location.href = "/detalle/" + info.event.id;
+          },
+        });
+        calendar.render();
+      });
+    </script>
+  </head>
+  <header><%- include('./partials/header') %></header>
+  <body>
+    <div style="max-width: 1200px; margin: auto;" id='calendar'></div>
+  </body>
+</html>

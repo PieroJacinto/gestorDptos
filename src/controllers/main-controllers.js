@@ -7,7 +7,7 @@ const {
 } = require("../models/reservas.model");
 
 module.exports = {
-  home: async (req, res) => {    
+  home: async (req, res) => {
     res.render("home");
   },
   nuevaReserva: async (req, res) => {
@@ -29,12 +29,14 @@ module.exports = {
     } = req.body;
 
     // Validación de fechas
-    const fechaCheckInObj = new Date(`${fechaCheckIn} ${horaCheckIn || ''}`);
-    const fechaCheckOutObj = new Date(`${fechaCheckOut} ${horaCheckOut || ''}`);
+    const fechaCheckInObj = new Date(`${fechaCheckIn} ${horaCheckIn || ""}`);
+    const fechaCheckOutObj = new Date(`${fechaCheckOut} ${horaCheckOut || ""}`);
 
     if (fechaCheckOutObj <= fechaCheckInObj) {
       // Manejar el caso en que la fecha de Check-Out es anterior o igual a la de Check-In
-      res.status(400).send("La fecha de Check-Out debe ser posterior a la de Check-In");
+      res
+        .status(400)
+        .send("La fecha de Check-Out debe ser posterior a la de Check-In");
       return;
     }
 
@@ -124,8 +126,8 @@ module.exports = {
     reserva.senia = senia !== "" ? parseInt(senia) : 0;
 
     // Calcula la cantidad de días redondeando siempre hacia arriba
-    const fechaCheckInObj = new Date(`${fechaCheckIn} ${horaCheckIn || ''}`);
-    const fechaCheckOutObj = new Date(`${fechaCheckOut} ${horaCheckOut || ''}`);
+    const fechaCheckInObj = new Date(`${fechaCheckIn} ${horaCheckIn || ""}`);
+    const fechaCheckOutObj = new Date(`${fechaCheckOut} ${horaCheckOut || ""}`);
     const diffEnMilisegundos = fechaCheckOutObj - fechaCheckInObj;
     const cantidadDias = Math.ceil(diffEnMilisegundos / (1000 * 60 * 60 * 24));
 
@@ -146,7 +148,7 @@ module.exports = {
     // Redirige después de editar la reserva
     res.redirect("/");
   },
-  
+
   eliminarReserva: async (req, res) => {
     const reservaId = parseInt(req.params.id);
     const reserva = one(reservaId);
@@ -162,5 +164,20 @@ module.exports = {
 
     // Redirige después de eliminar la reserva
     res.redirect("/");
+  },
+  calendario: async (req, res) => {
+    const departamentoSeleccionado = req.params.departamento;
+    const reservas = await index(); // Ajusta esto según tu aplicación
+
+    const eventosDepartamento = reservas
+      .filter((reserva) => reserva.departamento === departamentoSeleccionado)
+      .map((reserva) => ({
+        title: reserva.nombre,
+        start: reserva.fechaCheckIn,
+        end: reserva.fechaCheckOut,
+      }));
+    
+    console.log("eventos depto: ", eventosDepartamento)
+    res.render("calendario", { eventosDepartamento });
   },
 };

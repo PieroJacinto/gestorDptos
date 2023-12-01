@@ -18,3 +18,6 @@ router.post("/nueva", mainControllers.agregarDpto);
 // Nuevas rutas para la edición
 router.get("/editar/:id", mainControllers.editarVista);
 router.post("/editar/:id", mainControllers.editarReserva);
+
+// Agrega una nueva ruta para manejar las reservas por departamento
+router.get("/calendario/:departamento", mainControllers.calendario);
