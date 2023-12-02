@@ -4,12 +4,10 @@ const {
   one,
   obtenerDepartamento,
   obtenerReserva,
-  agregarNuevoDepartamento,
-  guardarReservas,
-  
+  agregarNuevoDepartamento,  
 } = require("../models/reservas.model");
-const fs = require("fs")
-const path = require("path")
+const fs = require("fs");
+const path = require("path");
 module.exports = {
   home: async (req, res) => {
     res.render("home");
@@ -94,19 +92,18 @@ module.exports = {
 
   editarReserva: async (req, res) => {
     const reservaId = parseInt(req.params.id);
-  
+
     try {
       // Obtén todas las reservas
       const reservasAll = index();
-  
       // Encuentra la reserva específica por ID
-      const reservaExistente = reservasAll.find((reserva) => reserva.id === reservaId);
-  
+      const reservaExistente = reservasAll.find(
+        (reserva) => reserva.id === reservaId
+      );
       if (!reservaExistente) {
         res.status(404).send("Reserva no encontrada");
         return;
       }
-  
       // Extrae los datos actualizados del cuerpo de la solicitud
       const {
         nombre,
@@ -121,27 +118,27 @@ module.exports = {
         precioPorDia,
         senia,
       } = req.body;
-  
       // Validación de fechas
       const fechaCheckInObj = new Date(`${fechaCheckIn} ${horaCheckIn || ""}`);
-      const fechaCheckOutObj = new Date(`${fechaCheckOut} ${horaCheckOut || ""}`);
-  
+      const fechaCheckOutObj = new Date(
+        `${fechaCheckOut} ${horaCheckOut || ""}`
+      );
       if (fechaCheckOutObj <= fechaCheckInObj) {
         // Manejar el caso en que la fecha de Check-Out es anterior o igual a la de Check-In
-        res.status(400).send("La fecha de Check-Out debe ser posterior a la de Check-In");
+        res
+          .status(400)
+          .send("La fecha de Check-Out debe ser posterior a la de Check-In");
         return;
       }
-  
       // Calcula la cantidad de días redondeando siempre hacia arriba
       const diffEnMilisegundos = fechaCheckOutObj - fechaCheckInObj;
-      const cantidadDias = Math.ceil(diffEnMilisegundos / (1000 * 60 * 60 * 24));
-  
+      const cantidadDias = Math.ceil(
+        diffEnMilisegundos / (1000 * 60 * 60 * 24)
+      );
       // Calcula el precio total antes de aplicar la señal
       const precioTotal = cantidadDias * parseFloat(precioPorDia);
-  
       // Calcula el monto de la seña pagada por los huéspedes
       const seniaPagada = senia !== "" ? parseInt(senia) : 0;
-  
       // Actualiza la reserva existente con los nuevos datos
       Object.assign(reservaExistente, {
         nombre,
@@ -160,73 +157,18 @@ module.exports = {
         fechaReserva: new Date().toISOString().split("T")[0],
         cantidadDias,
       });
-  
       // Guarda la reserva actualizada
       const productoActualizado = JSON.stringify(reservasAll, null, 2);
-      fs.writeFileSync(path.resolve(__dirname, "../data/reservas.json"), productoActualizado);
-  
+      fs.writeFileSync(
+        path.resolve(__dirname, "../data/reservas.json"),
+        productoActualizado
+      );
+
       res.redirect(`/detalle/${reservaId}`);
     } catch (error) {
       console.error("Error al editar la reserva:", error.message);
       res.status(500).send("Error interno al editar la reserva");
     }
-  
-  
-    // if (!reserva) {
-    //   // Manejar el caso en que la reserva no se encuentre
-    //   res.status(404).send("Reserva no encontrada");
-    //   return;
-    // }
-
-    // const {
-    //   nombre,
-    //   telefono,
-    //   departamento,
-    //   fechaCheckIn,
-    //   horaCheckIn,
-    //   fechaCheckOut,
-    //   horaCheckOut,
-    //   cantidadHuespedes,
-    //   moneda,
-    //   precioPorDia,
-    //   senia,
-    // } = req.body;
-
-    // // Realiza las actualizaciones en la reserva
-    // reserva.nombre = nombre;
-    // reserva.telefono = telefono;
-    // reserva.departamento = departamento;
-    // reserva.fechaCheckIn = fechaCheckIn;
-    // reserva.horaCheckIn = horaCheckIn;
-    // reserva.fechaCheckOut = fechaCheckOut;
-    // reserva.horaCheckOut = horaCheckOut;
-    // reserva.cantidadHuespedes = parseInt(cantidadHuespedes);
-    // reserva.moneda = moneda;
-    // reserva.precioPorDia = parseFloat(precioPorDia);
-    // reserva.senia = senia !== "" ? parseInt(senia) : 0;
-
-    // // Calcula la cantidad de días redondeando siempre hacia arriba
-    // const fechaCheckInObj = new Date(`${fechaCheckIn} ${horaCheckIn || ""}`);
-    // const fechaCheckOutObj = new Date(`${fechaCheckOut} ${horaCheckOut || ""}`);
-    // const diffEnMilisegundos = fechaCheckOutObj - fechaCheckInObj;
-    // const cantidadDias = Math.ceil(diffEnMilisegundos / (1000 * 60 * 60 * 24));
-
-    // // Calcula el precio total antes de aplicar la señal
-    // const precioTotal = cantidadDias * parseFloat(precioPorDia);
-
-    // // Calcula el monto de la seña pagada por los huéspedes
-    // const seniaPagada = senia !== "" ? parseInt(senia) : 0;
-
-    // // Actualiza los campos adicionales
-    // reserva.total = precioTotal;
-    // reserva.restaPagar = precioTotal - seniaPagada;
-    // reserva.cantidadDias = cantidadDias;
-    // console.log("reserva: ", reserva)
-    // // Guarda la reserva actualizada
-    // guardarReservas([reserva]);
-
-    // // Redirige después de editar la reserva
-    // res.redirect("/");
   },
   calendario: async (req, res) => {
     const departamentoSeleccionado = req.params.departamento;
@@ -238,25 +180,27 @@ module.exports = {
         title: reserva.nombre,
         start: reserva.fechaCheckIn,
         end: reserva.fechaCheckOut,
-        id: reserva.id
+        id: reserva.id,
       }));
-    
-    res.render("calendario", { eventosDepartamento });
-},
 
-  detalle: async ( req, res ) => {
-    id = parseInt(req.params.id)    
-    reserva = obtenerReserva(id)    
-    res.render("detalleReserva",{ reserva })
+    res.render("calendario", { eventosDepartamento });
+  },
+
+  detalle: async (req, res) => {
+    id = parseInt(req.params.id);
+    reserva = obtenerReserva(id);
+    res.render("detalleReserva", { reserva });
   },
   destroy: (req, res) => {
-    console.log("estoy en destroy")
-		const reservas = index()
-		const id = req.params.id
-		const reservasRestantes = reservas.filter(reserva => reserva.id != id)
-		const reservasGuardar = JSON.stringify(reservasRestantes, null, 2)
-		fs.writeFileSync(path.resolve(__dirname, "../data/reservas.json"), reservasGuardar)
-		res.redirect("/")		
-	}
- 
+    console.log("estoy en destroy");
+    const reservas = index();
+    const id = req.params.id;
+    const reservasRestantes = reservas.filter((reserva) => reserva.id != id);
+    const reservasGuardar = JSON.stringify(reservasRestantes, null, 2);
+    fs.writeFileSync(
+      path.resolve(__dirname, "../data/reservas.json"),
+      reservasGuardar
+    );
+    res.redirect("/");
+  },
 };
