@@ -61,8 +61,8 @@ hr {
 }
 
 
-.btn-primary {
-    color: #fff;
+.btn-reg {
+    color: #fff !important;
     background-color: #445069 !important;
     border-color: #445069 !important;
     font-size: 16px !important;   

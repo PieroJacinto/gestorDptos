@@ -1,40 +1,20 @@
-{
-  "reservas": [
-    {
-      "id": 1,
-      "nombre": "Melina Benitez",
-      "telefono": "1133688942",
-      "departamento": "Mansilla",
-      "fechaCheckIn": "2023-12-01",
-      "horaCheckIn": "14:01",
-      "fechaCheckOut": "2023-12-04",
-      "horaCheckOut": "",
-      "cantidadHuespedes": 4,
-      "moneda": "ARS",
-      "precioPorDia": 40000,
-      "senia": 5000,
-      "total": 120000,
-      "restaPagar": 115000,
-      "fechaReserva": "2023-12-01",
-      "cantidadDias": 3
-    },
-    {
-      "id": 2,
-      "nombre": "Piero",
-      "telefono": "1133688942",
-      "departamento": "Mansilla",
-      "fechaCheckIn": "2023-12-13",
-      "horaCheckIn": "",
-      "fechaCheckOut": "2023-12-16",
-      "horaCheckOut": "",
-      "cantidadHuespedes": 3,
-      "moneda": "ARS",
-      "precioPorDia": 42000,
-      "senia": 6000,
-      "total": 126000,
-      "restaPagar": 120000,
-      "fechaReserva": "2023-12-01",
-      "cantidadDias": 3
-    }
-  ]
-}
+[
+  {
+    "id": 1701480120732,
+    "nombre": "Piero",
+    "telefono": "1133688942",
+    "departamento": "Mansilla",
+    "fechaCheckIn": "2023-12-01",
+    "horaCheckIn": "",
+    "fechaCheckOut": "2023-12-06",
+    "horaCheckOut": "",
+    "cantidadHuespedes": 1,
+    "moneda": "ARS",
+    "precioPorDia": 40000,
+    "senia": 5000,
+    "total": 200000,
+    "restaPagar": 195000,
+    "fechaReserva": "2023-12-02",
+    "cantidadDias": 5
+  }
+]
