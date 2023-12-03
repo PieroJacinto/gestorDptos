@@ -201,4 +201,34 @@ module.exports = {
     );
     res.redirect("/");
   },
+  facturacion: async (req, res) => {
+    const departamento = req.params.departamento;
+
+    // Obtener reservas del departamento específico
+    const reservas = obtenerDepartamento(departamento);
+
+    // Filtrar por año y mes (si se proporcionan en la consulta)
+    const { year, month } = req.query;
+    const reservasFiltradas = reservas.filter((reserva) => {
+      if (!year || !month) {
+        return true; // No hay filtro, mostrar todas las reservas
+      }
+
+      const fechaReserva = new Date(reserva.fechaReserva);
+      return fechaReserva.getFullYear() == year && fechaReserva.getMonth() == month - 1;
+    });
+
+    // Calcular totales
+    const totalPesos = reservasFiltradas.reduce((total, reserva) => total + reserva.total, 0);
+    const totalDolares = reservasFiltradas.reduce((total, reserva) => {
+      return reserva.moneda === 'USD' ? total + reserva.total : total;
+    }, 0);
+
+    res.render("facturacion", {
+      departamento,
+      reservas: reservasFiltradas,
+      totalPesos,
+      totalDolares,
+    });
+  },
 };

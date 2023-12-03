@@ -1,0 +1,62 @@
+<!-- views/facturacion.ejs -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facturación Mensual</title>
+
+  <!-- Agregar enlaces a Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Puedes cambiar la versión y el enlace según la versión de Bootstrap que prefieras -->
+</head>
+<body class="container mt-5">
+
+  <h1 class="text-center mb-4">Facturación Mensual para <%= departamento %></h1>
+  
+  <!-- Formulario centrado con estilos de Bootstrap -->
+  <form class="mx-auto mb-4" style="max-width: 300px;" action="/facturacion/<%= departamento %>" method="get">
+    <div class="form-group">
+      <label for="year">Año:</label>
+      <!-- Convertir el campo de año en un select -->
+      <select class="form-control" name="year" id="year">
+        <% for (let i = new Date().getFullYear(); i >= 2000; i--) { %>
+          <option value="<%= i %>"><%= i %></option>
+        <% } %>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="month">Mes:</label>
+      <!-- Convertir el campo de mes en un select con nombres de meses en español -->
+      <select class="form-control" name="month" id="month">
+        <% const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']; %>
+        <% for (let i = 0; i < meses.length; i++) { %>
+          <option value="<%= i + 1 %>"><%= meses[i] %></option>
+        <% } %>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+  </form>
+
+  <h2>Reservas del Mes: <%= reservas.length %></h2>
+  <ul>
+    <% for (let reserva of reservas) { %>
+      <li><%= reserva.nombre %> - <%= reserva.fechaReserva %></li>
+      <!-- Agregar más detalles de la reserva según tus necesidades -->
+    <% } %>
+  </ul>
+
+  <!-- Utilizar toLocaleString para separar los miles en los totales -->
+  <h2>Total Facturado en Pesos: <%= totalPesos.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' }) %></h2>
+  <h2>Total Facturado en Dólares: <%= totalDolares.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></h2>
+
+  <!-- Agregar enlace a Bootstrap JS y jQuery (opcional) -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <!-- Puedes cambiar la versión y el enlace según la versión de Bootstrap que prefieras -->
+
+</body>
+</html>
