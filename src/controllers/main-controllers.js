@@ -180,8 +180,7 @@ module.exports = {
         start: reserva.fechaCheckIn,
         end: reserva.fechaCheckOut,
         id: reserva.id,
-      }));
-      console.log("eventos departamento : ", eventosDepartamento)
+      }));      
     res.render("calendario", { eventosDepartamento, departamentoSeleccionado });
   },
 

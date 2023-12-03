@@ -141,3 +141,32 @@ hr {
   font-size: 16px; /* Tamaño de la letra deseado */
   cursor: pointer;
 }
+
+/*  cards home */
+.card {
+  border: none !important;
+}
+/* Estilo adicional para centrar el texto sobre la imagen */
+.card-img-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  
+}
+
+/* Efecto hover sobre el título */
+.card-title:hover {
+  text-decoration: underline;
+  color: turquoise;
+  cursor: pointer;
+}
+
+/* Configurar altura de la imagen dentro de la tarjeta */
+.card-img-top {
+  height: 300px; /* Ajusta la altura según tus necesidades */
+  object-fit: cover;
+  border-radius: 20px;
+}

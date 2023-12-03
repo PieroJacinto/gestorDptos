@@ -52,5 +52,23 @@
     "restaPagar": 0,
     "fechaReserva": "2023-12-02",
     "cantidadDias": 1
+  },
+  {
+    "id": 1701633000922,
+    "nombre": "juan",
+    "telefono": "11223344",
+    "departamento": "Las-Heras",
+    "fechaCheckIn": "2023-12-06",
+    "horaCheckIn": "",
+    "fechaCheckOut": "2023-12-12",
+    "horaCheckOut": "",
+    "cantidadHuespedes": 4,
+    "moneda": "USD",
+    "precioPorDia": 45000,
+    "senia": 5000,
+    "total": 270000,
+    "restaPagar": 265000,
+    "fechaReserva": "2023-12-03",
+    "cantidadDias": 6
   }
 ]
