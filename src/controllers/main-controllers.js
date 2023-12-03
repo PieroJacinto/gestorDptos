@@ -1,4 +1,5 @@
-const { log } = require("console");
+const fs = require("fs");
+const path = require("path");
 const {
   index,
   one,
@@ -6,8 +7,6 @@ const {
   obtenerReserva,
   agregarNuevoDepartamento,  
 } = require("../models/reservas.model");
-const fs = require("fs");
-const path = require("path");
 module.exports = {
   home: async (req, res) => {
     res.render("home");
@@ -182,8 +181,8 @@ module.exports = {
         end: reserva.fechaCheckOut,
         id: reserva.id,
       }));
-
-    res.render("calendario", { eventosDepartamento });
+      console.log("eventos departamento : ", eventosDepartamento)
+    res.render("calendario", { eventosDepartamento, departamentoSeleccionado });
   },
 
   detalle: async (req, res) => {
