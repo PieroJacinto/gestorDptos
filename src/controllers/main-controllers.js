@@ -245,18 +245,16 @@ module.exports = {
       if (!year || !month) {
         return true; // No hay filtro, mostrar todas las reservas
       }
-
-      const fechaCheckIn = new Date(reserva.fechaCheckIn);
+    
+      const fechaCheckIn = new Date(`${reserva.fechaCheckIn}T00:00:00Z`);     
+    
       return (
-        fechaCheckIn.getFullYear() == year &&
-        fechaCheckIn.getMonth() == month - 1
+        fechaCheckIn.getUTCFullYear() === parseInt(year) &&
+        fechaCheckIn.getUTCMonth() === parseInt(month) - 1 &&
+        fechaCheckIn.getUTCDate() >= 1
       );
-    });
-
-    for (const reserva of reservasFiltradas) {
-      console.log("fecha check in:", reserva.fechaCheckIn);
-      console.log("fecha formateada:", formatearFecha(reserva.fechaCheckIn));
-    }
+    });   
+    
 
     // Calcular totales
     const totalPesos = reservasFiltradas.reduce(
