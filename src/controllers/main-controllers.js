@@ -203,7 +203,13 @@ module.exports = {
   },
   facturacion: async (req, res) => {
     const departamento = req.params.departamento;
+    const selectedMonth = req.query.month;
 
+
+    const formatearFecha = (fecha) => {
+      const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(fecha).toLocaleDateString('es-AR', opciones);
+    };
     // Obtener reservas del departamento específico
     const reservas = obtenerDepartamento(departamento);
 
@@ -229,6 +235,8 @@ module.exports = {
       reservas: reservasFiltradas,
       totalPesos,
       totalDolares,
+      formatearFecha,
+      selectedMonth
     });
   },
 };
