@@ -204,7 +204,9 @@ module.exports = {
   facturacion: async (req, res) => {
     const departamento = req.params.departamento;
     const selectedMonth = req.query.month;
-
+    const getMonthName = (month) => {
+      const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+      return meses[month - 1]; }
 
     const formatearFecha = (fecha) => {
       const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -236,7 +238,8 @@ module.exports = {
       totalPesos,
       totalDolares,
       formatearFecha,
-      selectedMonth
+      selectedMonth,
+      getMonthName
     });
   },
 };

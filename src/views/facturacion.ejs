@@ -52,10 +52,7 @@
         return fechaA - fechaB;
       });
     %>
-    <% function getMonthName(month) {
-      const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-      return meses[month - 1];
-    } %>
+  
     <h2>Reservas del Mes: <%= getMonthName(selectedMonth) %> <%= reservas.length %></h2>
     <ul class="list-unstyled">
       <% for (let reserva of reservas) { %>
