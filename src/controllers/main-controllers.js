@@ -5,7 +5,7 @@ const {
   one,
   obtenerDepartamento,
   obtenerReserva,
-  agregarNuevoDepartamento,  
+  agregarNuevoDepartamento,
 } = require("../models/reservas.model");
 module.exports = {
   home: async (req, res) => {
@@ -180,7 +180,7 @@ module.exports = {
         start: reserva.fechaCheckIn,
         end: reserva.fechaCheckOut,
         id: reserva.id,
-      }));      
+      }));
     res.render("calendario", { eventosDepartamento, departamentoSeleccionado });
   },
 
@@ -205,13 +205,37 @@ module.exports = {
     const departamento = req.params.departamento;
     const selectedMonth = req.query.month;
     const getMonthName = (month) => {
-      const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-      return meses[month - 1]; }
+      const meses = [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre",
+      ];
+      return meses[month - 1];
+    };
 
     const formatearFecha = (fecha) => {
-      const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
-      return new Date(fecha).toLocaleDateString('es-AR', opciones);
+      const opciones = { year: "numeric", month: "long", day: "numeric" };
+      const fechaLocal = new Date(fecha + "T00:00:00Z"); // Asegura que la fecha se interprete en UTC
+    
+      const dia = fechaLocal.getUTCDate();
+      const mes = fechaLocal.getUTCMonth() + 1;
+      const anio = fechaLocal.getUTCFullYear();
+    
+      return `${dia} de ${getMonthName(mes)} de ${anio}`;
     };
+    
+    
+    
+
     // Obtener reservas del departamento específico
     const reservas = obtenerDepartamento(departamento);
 
@@ -222,14 +246,25 @@ module.exports = {
         return true; // No hay filtro, mostrar todas las reservas
       }
 
-      const fechaReserva = new Date(reserva.fechaReserva);
-      return fechaReserva.getFullYear() == year && fechaReserva.getMonth() == month - 1;
+      const fechaCheckIn = new Date(reserva.fechaCheckIn);
+      return (
+        fechaCheckIn.getFullYear() == year &&
+        fechaCheckIn.getMonth() == month - 1
+      );
     });
 
+    for (const reserva of reservasFiltradas) {
+      console.log("fecha check in:", reserva.fechaCheckIn);
+      console.log("fecha formateada:", formatearFecha(reserva.fechaCheckIn));
+    }
+
     // Calcular totales
-    const totalPesos = reservasFiltradas.reduce((total, reserva) => total + reserva.total, 0);
+    const totalPesos = reservasFiltradas.reduce(
+      (total, reserva) => total + reserva.total,
+      0
+    );
     const totalDolares = reservasFiltradas.reduce((total, reserva) => {
-      return reserva.moneda === 'USD' ? total + reserva.total : total;
+      return reserva.moneda === "USD" ? total + reserva.total : total;
     }, 0);
 
     res.render("facturacion", {
@@ -239,7 +274,7 @@ module.exports = {
       totalDolares,
       formatearFecha,
       selectedMonth,
-      getMonthName
+      getMonthName,
     });
   },
 };
