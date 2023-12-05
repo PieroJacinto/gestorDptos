@@ -28,6 +28,8 @@ router.get("/calendario/:departamento", mainControllers.calendario);
 // Agrega una nueva ruta para manejar la facturación mensual por departamento
 router.get("/facturacion/:departamento", mainControllers.facturacion);
 
+router.get("/auth", mainControllers.auth)
+
 
 //EXPORTAMOS ROUTER
 module.exports = router;

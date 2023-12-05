@@ -4,9 +4,10 @@ require("dotenv").config();
 //REQUERIMOPS EXPRESS
 const express = require("express");
 
+const methodOverride = require('method-override');
+
 //REQUERIMOS SESSION
 const session = require('cookie-session');
-const methodOverride = require('method-override');
 
 //EJECUTAMOS EXPRESS
 const app = express();
@@ -30,10 +31,11 @@ app.use(express.json());
 app.use(session({
     resave: false,
     saveUninitialized: false,
-    secret: 'secret',       
+    secret: 'los gatitos son lo mejor',       
 }));
 app.use(methodOverride('_method'));
 //REQUERIMOS EL ROUTEADOR PRINCIPAL
+
 const mainRouter = require("./routes/main-router");
 
 // MONTAMOS MAIN ROUTER
