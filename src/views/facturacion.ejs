@@ -19,7 +19,7 @@
   <!-- Formulario centrado con estilos de Bootstrap -->
   <form class="mx-auto mb-4" style="max-width: 300px;" action="/facturacion/<%= departamento %>" method="get">
     <div class="form-group">
-      <label for="year">Año:</label>
+      <label for="year"><strong>Año:</strong></label>
       <!-- Convertir el campo de año en un select -->
       <select class="form-control" name="year" id="year">
         <% const yearActual = new Date().getFullYear(); %>
@@ -30,7 +30,7 @@
     </div>
 
     <div class="form-group">
-      <label for="month">Mes:</label>
+      <label for="month"><strong>Mes:</strong></label>
       <!-- Convertir el campo de mes en un select con nombres de meses en español -->
       <select class="form-control" name="month" id="month">
         <% const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']; %>
