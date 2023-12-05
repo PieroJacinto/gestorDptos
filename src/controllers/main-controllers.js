@@ -23,17 +23,10 @@ module.exports = {
     if(resultValidation.errors.length > 0 ){
       
       return res.render("nuevaReserva",{
-        errors: resultValidation.mapped()
+        errors: resultValidation.mapped(),
+        oldData: req.body
       })
-    }
-  },
-  /*agregarDpto: async (req, res) => {
-    const resultValidation = validationResult(req)
-    if(resultValidation.length > 0 ){
-      return res.render("nuevaReserva",{
-        errors: resultValidation.mapped()
-      })
-    }
+    } 
 
     const {
       nombre,
@@ -95,7 +88,7 @@ module.exports = {
 
     // Redirige después de agregar un nuevo departamento
     res.redirect("/");
-  },*/
+  },
   editarVista: async (req, res) => {
     const reservaId = parseInt(req.params.id);
     const reserva = one(reservaId);

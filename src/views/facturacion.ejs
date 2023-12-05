@@ -53,23 +53,40 @@
       });
     %>
   
-  <h2>Reservas del Mes de <%= getMonthName(selectedMonth) %> : <%= reservas.length %></h2>
-
-    <ul class="list-unstyled">
-      <% for (let reserva of reservas) { %>
-        <li>
-          <%= reserva.nombre %> - 
-          Desde: <%= formatearFecha(reserva.fechaCheckIn) %> 
-          Hasta: <%= formatearFecha(reserva.fechaCheckOut) %>
-        </li>
-        <!-- Agregar más detalles de la reserva según tus necesidades -->
+  <div class="container">
+    <h2 class="text-center mb-4">
+      <% if (!selectedMonth) { %>
+        Reservas Totales para <%= departamento %>
+      <% } else { %>
+        Reservas del Mes de <%= getMonthName(selectedMonth) %> de <%= departamento %>
       <% } %>
-    </ul>
+    </h2>
+  
+    <table class="table table-primary mt-4 mb-4">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Desde</th>
+          <th>Hasta</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (let reserva of reservas) { %>
+          <tr>
+            <td><%= reserva.nombre %></td>
+            <td><%= formatearFecha(reserva.fechaCheckIn) %></td>
+            <td><%= formatearFecha(reserva.fechaCheckOut) %></td>
+            <td>$ <%= reserva.total.toLocaleString() %> <%= reserva.moneda %></td>
+          </tr>
+          <!-- Agregar más detalles de la reserva según tus necesidades -->
+        <% } %>
+      </tbody>
+    </table>
   
     <!-- Utilizar toLocaleString para separar los miles en los totales -->
     <h2>Total Facturado en Pesos: <%= totalPesos.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' }) %></h2>
     <h2>Total Facturado en Dólares: <%= totalDolares.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></h2>
-
   </div>
 
   <!-- Agregar enlace a Bootstrap JS y jQuery (opcional) -->

@@ -26,6 +26,7 @@
                         id="nombre" 
                         name="nombre" 
                         class="form-control <%= locals.errors && errors.nombre ? "is-invalid" : null %>"
+                        value= "<%= locals.oldData ? oldData.nombre : null %>" 
                     >
                     <% if (locals.errors && errors.nombre ) { %>
                         <div class="text-danger"> <%= errors.nombre.msg %></div>
@@ -38,7 +39,8 @@
                         type="tel" 
                         id="telefono" 
                         name="telefono" 
-                        class="form-control <%= locals.errors && errors.telefono ? "is-invalid" : null %>" 
+                        class="form-control <%= locals.errors && errors.telefono ? "is-invalid" : null %>"
+                        value= "<%= locals.oldData ? oldData.telefono : null %>" 
                     >
                     <% if (locals.errors && errors.telefono ) { %>
                         <div class="text-danger"> <%= errors.telefono.msg %></div>
@@ -51,11 +53,19 @@
                         id="departamento" 
                         name="departamento" 
                         class="form-select <%= locals.errors && errors.departamento ? "is-invalid" : null %>"
+                        value= "<%= locals.oldData ? oldData.departamento : null %>"
                     >   
-                        <option value="" selected></option>
-                        <option value="Mansilla">Mansilla</option>
-                        <option value="Corrientes">Corrientes</option>
-                        <option value="Las-Heras">Las Heras</option>
+                        <option value=""> Elegí un Departamento</option>
+                        <% 
+                            const departamentos = ["Mansilla", "Corrientes", "Las-Heras"]
+                        %>
+                        <% for( const oneDpto of departamentos ) { %>
+                            <option 
+                                value="<%= oneDpto %>"
+                                <%= locals.oldData && (oneDpto === oldData.departamento) ? "selected": null %>                                
+                            >
+                            <%= oneDpto %></option>
+                        <% } %>                       
                     </select>
                     <% if (locals.errors && errors.departamento ) { %>
                         <div class="text-danger"> <%= errors.departamento.msg %></div>
@@ -68,7 +78,9 @@
                         type="date" 
                         id="fechaCheckIn" 
                         name="fechaCheckIn" 
-                        class="form-control <%= locals.errors && errors.fechaCheckIn ? "is-invalid" : null %>" >
+                        class="form-control <%= locals.errors && errors.fechaCheckIn ? "is-invalid" : null %>"
+                        value= "<%= locals.oldData ? oldData.fechaCheckIn : null %>"
+                    >
                     <% if (locals.errors && errors.fechaCheckIn ) { %>
                         <div class="text-danger"> <%= errors.fechaCheckIn.msg %></div>
                     <% } %>
@@ -124,9 +136,18 @@
                         name="moneda" 
                         class="form-select <%= locals.errors && errors.moneda ? "is-invalid" : null %>"
                     >
-                        <option value="" selected></option>
-                        <option value="ARS">Pesos argentinos</option>
-                        <option value="USD">Dólares estadounidenses</option>
+                        <option value=""> Elegí una moneda </option>
+                        <% 
+                            const monedas = ["ARS", "USD" ]
+                        %>
+                        <% for( const oneCoin of monedas) { %>
+                            <option 
+                                value="<%= oneCoin %>"
+                                <%= locals.oldData && (oneCoin === oldData.moneda) ? "selected": null %>                                
+                            >
+                            <%= oneCoin %></option>
+                        <% } %>  
+                        
                     </select>
                     <% if (locals.errors && errors.moneda ) { %>
                         <div class="text-danger"> <%= errors.moneda.msg %></div>
