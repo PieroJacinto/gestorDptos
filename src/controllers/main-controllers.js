@@ -278,6 +278,12 @@ module.exports = {
       return reserva.moneda === "USD" ? total + reserva.total : total;
     }, 0);
 
+      // Calcular Total Pagado
+    const totalPagado = reservasFiltradas.reduce(
+      (total, reserva) => total + reserva.senia,
+      0
+    );
+
     res.render("facturacion", {
       departamento,
       reservas: reservasFiltradas,
@@ -286,6 +292,7 @@ module.exports = {
       formatearFecha,
       selectedMonth,
       getMonthName,
+      totalPagado
     });
   },
   auth: async ( req, res ) => {

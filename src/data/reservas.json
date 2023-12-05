@@ -11,10 +11,10 @@
     "cantidadHuespedes": 3,
     "moneda": "ARS",
     "precioPorDia": 20707,
-    "senia": 5000,
+    "senia": 41414,
     "total": 41414,
-    "restaPagar": 36414,
-    "fechaReserva": "2023-12-02",
+    "restaPagar": 0,
+    "fechaReserva": "2023-12-05",
     "cantidadDias": 2
   },
   {
@@ -29,10 +29,10 @@
     "cantidadHuespedes": 4,
     "moneda": "ARS",
     "precioPorDia": 25000,
-    "senia": 5000,
+    "senia": 75000,
     "total": 75000,
-    "restaPagar": 70000,
-    "fechaReserva": "2023-12-02",
+    "restaPagar": 0,
+    "fechaReserva": "2023-12-05",
     "cantidadDias": 3
   },
   {

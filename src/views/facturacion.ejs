@@ -72,24 +72,32 @@
           <th>Desde</th>
           <th>Hasta</th>
           <th>Total</th>
+          <th>Pagó</th>
         </tr>
       </thead>
       <tbody>
         <% for (let reserva of reservas) { %>
           <tr>
-            <td><%= reserva.nombre %></td>
+            <td>
+              <a href="/detalle/<%= reserva.id %>">
+                <%= reserva.nombre %>
+              </a>
+            </td>
             <td><%= formatearFecha(reserva.fechaCheckIn) %></td>
             <td><%= formatearFecha(reserva.fechaCheckOut) %></td>
             <td>$ <%= reserva.total.toLocaleString() %> <%= reserva.moneda %></td>
+            <td> <%= reserva.senia.toLocaleString() %> <%= reserva.moneda %></td></td>
           </tr>
           <!-- Agregar más detalles de la reserva según tus necesidades -->
         <% } %>
       </tbody>
     </table>
   
-    <!-- Utilizar toLocaleString para separar los miles en los totales -->
-    <h2>Total Facturado en Pesos: <%= totalPesos.toLocaleString('es-AR', { style: 'currency', currency: 'ARS' }) %></h2>
-    <h2>Total Facturado en Dólares: <%= totalDolares.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) %></h2>
+    <!-- Totales -->
+  <h2>Total a Facturar: $<%= (totalPesos + totalDolares).toLocaleString() %></h2>
+  <h2>Total Pagado en Pesos: $<%= totalPagado.toLocaleString() %></h2>
+  <h2>Total Pagado en Dólares: $<%= totalDolares.toLocaleString() %></h2>
+  <h2>Resta Pagar: $<%= (totalPesos + totalDolares - totalPagado).toLocaleString() %></h2>
   </div>
 
   <!-- Agregar enlace a Bootstrap JS y jQuery (opcional) -->
