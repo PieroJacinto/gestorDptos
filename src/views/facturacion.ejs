@@ -56,7 +56,7 @@
       });
     %>
   
-  <div class="container">
+  <div class="container-fluid">
     <h2 class="text-center mb-4">
       <% if (!selectedMonth) { %>
         Reservas Totales para <%= departamento %>
@@ -75,6 +75,7 @@
           <th>Pagó</th>
         </tr>
       </thead>
+      <!-- Dentro de la etiqueta <tbody> -->
       <tbody>
         <% for (let reserva of reservas) { %>
           <tr>
@@ -85,12 +86,13 @@
             </td>
             <td><%= formatearFecha(reserva.fechaCheckIn) %></td>
             <td><%= formatearFecha(reserva.fechaCheckOut) %></td>
-            <td>$ <%= reserva.total.toLocaleString() %> <%= reserva.moneda %></td>
-            <td> <%= reserva.senia.toLocaleString() %> <%= reserva.moneda %></td></td>
+            <td><strong>$ <%= reserva.total.toLocaleString() %> <%= reserva.moneda %></strong></td>
+            <td><strong>$ <%= reserva.senia.toLocaleString() %> <%= reserva.moneda %></strong></td>
           </tr>
           <!-- Agregar más detalles de la reserva según tus necesidades -->
         <% } %>
       </tbody>
+
     </table>
   
     <!-- Totales -->
