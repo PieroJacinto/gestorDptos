@@ -12,9 +12,9 @@
 <header>
   <%- include('./partials/header') %>
 </header>
-<body class="container-fluid mt-5">
+<body >
 
-  <h1 class="text-center mb-4">Facturación Mensual para <%= departamento %></h1>
+  <h1 class="text-center mb-4 mt-4">Facturación Mensual para <%= departamento %></h1>
   
   <!-- Formulario centrado con estilos de Bootstrap -->
   <form class="mx-auto mb-4" style="max-width: 300px;" action="/facturacion/<%= departamento %>" method="get">
@@ -22,8 +22,9 @@
       <label for="year">Año:</label>
       <!-- Convertir el campo de año en un select -->
       <select class="form-control" name="year" id="year">
-        <% for (let i = new Date().getFullYear(); i >= 2000; i--) { %>
-          <option value="<%= i %>"><%= i %></option>
+        <% const yearActual = new Date().getFullYear(); %>
+        <% for (let i = 2030; i >= 2000; i--) { %>
+          <option value="<%= i %>" <% if (i === yearActual) { %>selected<% } %>><%= i %></option>
         <% } %>
       </select>
     </div>
@@ -33,11 +34,13 @@
       <!-- Convertir el campo de mes en un select con nombres de meses en español -->
       <select class="form-control" name="month" id="month">
         <% const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']; %>
+        <% const mesActual = new Date().getMonth() + 1; %>
         <% for (let i = 0; i < meses.length; i++) { %>
-          <option value="<%= i + 1 %>" <% if (i + 1 === parseInt(selectedMonth)) { %>selected<% } %>><%= meses[i] %></option>
+          <option value="<%= i + 1 %>" <% if (i + 1 === mesActual) { %>selected<% } %>><%= meses[i] %></option>
         <% } %>
       </select>
     </div>
+    
 
     <div class="text-center">
       <button type="submit" class="btn btn-primary">Filtrar</button>
