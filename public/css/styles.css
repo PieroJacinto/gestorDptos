@@ -170,3 +170,6 @@ hr {
   object-fit: cover;
   border-radius: 20px;
 }
+.text-danger{
+  font-size: 14px;
+}

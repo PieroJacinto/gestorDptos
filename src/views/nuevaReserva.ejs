@@ -13,43 +13,84 @@
         <!-- Contenedor del Formulario con Título -->
         <div class="container d-flex flex-column align-items-center">
             <!-- Título del Formulario -->
-            <h2 class="mb-4 mt-4">Registrar Nueva Reserva</h2>
+            <h2 class="mb-4 mt-4">Registrar Nueva Reserva</h2>         
+            
 
             <!-- Formulario de Reserva -->
             <form id="formulario-reserva" method="post" action="/nueva" class="my-4 p-4 border rounded w-75"
-                style="background-color: #f8f9fa;">
+                style="background-color: #f8f9fa;"  novalidate>
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre de contacto:</label>
-                    <input type="text" id="nombre" name="nombre" class="form-control" required>
+                    <input 
+                        type="text" 
+                        id="nombre" 
+                        name="nombre" 
+                        class="form-control <%= locals.errors && errors.nombre ? "is-invalid" : null %>"
+                    >
+                    <% if (locals.errors && errors.nombre ) { %>
+                        <div class="text-danger"> <%= errors.nombre.msg %></div>
+                    <% } %>
                 </div>
 
                 <div class="mb-3">
                     <label for="telefono" class="form-label">Teléfono de contacto:</label>
-                    <input type="tel" id="telefono" name="telefono" class="form-control" required>
+                    <input 
+                        type="tel" 
+                        id="telefono" 
+                        name="telefono" 
+                        class="form-control <%= locals.errors && errors.telefono ? "is-invalid" : null %>" 
+                    >
+                    <% if (locals.errors && errors.telefono ) { %>
+                        <div class="text-danger"> <%= errors.telefono.msg %></div>
+                    <% } %>
                 </div>
 
                 <div class="mb-3">
                     <label for="departamento" class="form-label">Departamento:</label>
-                    <select id="departamento" name="departamento" class="form-select" required>
+                    <select 
+                        id="departamento" 
+                        name="departamento" 
+                        class="form-select <%= locals.errors && errors.departamento ? "is-invalid" : null %>"
+                    >   
+                        <option value="" selected></option>
                         <option value="Mansilla">Mansilla</option>
                         <option value="Corrientes">Corrientes</option>
                         <option value="Las-Heras">Las Heras</option>
                     </select>
+                    <% if (locals.errors && errors.departamento ) { %>
+                        <div class="text-danger"> <%= errors.departamento.msg %></div>
+                    <% } %>
                 </div>
 
                 <div class="mb-3">
                     <label for="fechaCheckIn" class="form-label">Fecha de Check-In:</label>
-                    <input type="date" id="fechaCheckIn" name="fechaCheckIn" class="form-control" required>
+                    <input 
+                        type="date" 
+                        id="fechaCheckIn" 
+                        name="fechaCheckIn" 
+                        class="form-control <%= locals.errors && errors.fechaCheckIn ? "is-invalid" : null %>" >
+                    <% if (locals.errors && errors.fechaCheckIn ) { %>
+                        <div class="text-danger"> <%= errors.fechaCheckIn.msg %></div>
+                    <% } %>
                 </div>
             
                 <div class="mb-3">
                     <label for="horaCheckIn" class="form-label">Horario de Check-In (opcional):</label>
-                    <input type="time" id="horaCheckIn" name="horaCheckIn" class="form-control">
+                    <input 
+                        type="time" id="horaCheckIn" name="horaCheckIn" class="form-control">
                 </div>
             
                 <div class="mb-3">
                     <label for="fechaCheckOut" class="form-label">Fecha de Check-Out:</label>
-                    <input type="date" id="fechaCheckOut" name="fechaCheckOut" class="form-control" required>
+                    <input 
+                        type="date" 
+                        id="fechaCheckOut" 
+                        name="fechaCheckOut" 
+                        class="form-control <%= locals.errors && errors.fechaCheckOut ? "is-invalid" : null %>" 
+                    >
+                    <% if (locals.errors && errors.fechaCheckOut ) { %>
+                        <div class="text-danger"> <%= errors.fechaCheckOut.msg %></div>
+                    <% } %>
                 </div>
             
                 <div class="mb-3">
@@ -62,21 +103,48 @@
 
                 <div class="mb-3">
                     <label for="cantidadHuespedes" class="form-label">Cantidad de huéspedes (max 4):</label>
-                    <input type="number" id="cantidadHuespedes" name="cantidadHuespedes" class="form-control" min="1"
-                        max="4" required>
+                    <input 
+                        type="number" 
+                        id="cantidadHuespedes" 
+                        name="cantidadHuespedes" 
+                        class="form-control <%= locals.errors && errors.cantidadHuespedes ? "is-invalid" : null %>" 
+                        min="1"
+                        max="4"
+                    >
+                        <% if (locals.errors && errors.cantidadHuespedes ) { %>
+                            <div class="text-danger"> <%= errors.cantidadHuespedes.msg %></div>
+                        <% } %>
+                        
                 </div>
 
                 <div class="mb-3">
                     <label for="moneda" class="form-label">Moneda:</label>
-                    <select id="moneda" name="moneda" class="form-select" required>
-                        <option value="USD">Dólares estadounidenses</option>
+                    <select 
+                        id="moneda" 
+                        name="moneda" 
+                        class="form-select <%= locals.errors && errors.moneda ? "is-invalid" : null %>"
+                    >
+                        <option value="" selected></option>
                         <option value="ARS">Pesos argentinos</option>
+                        <option value="USD">Dólares estadounidenses</option>
                     </select>
+                    <% if (locals.errors && errors.moneda ) { %>
+                        <div class="text-danger"> <%= errors.moneda.msg %></div>
+                    <% } %>
                 </div>
 
                 <div class="mb-3">
                     <label for="precioPorDia" class="form-label">Precio por Día:</label>
-                    <input type="number" id="precioPorDia" name="precioPorDia" class="form-control" min="0" required>
+                    <input 
+                        type="number" 
+                        id="precioPorDia" 
+                        name="precioPorDia" 
+                        class="form-control <%= locals.errors && errors.precioPorDia ? "is-invalid" : null %>"
+                        min="0"
+                    >
+                    <% if (locals.errors && errors.precioPorDia ) { %>
+                        <div class="text-danger"> <%= errors.precioPorDia.msg %></div>
+                    <% } %>
                 </div>
 
                 <div class="mb-4">

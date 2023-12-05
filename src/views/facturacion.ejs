@@ -53,7 +53,7 @@
       });
     %>
   
-  <h2>Reservas del Mes: <%= getMonthName(selectedMonth) %> <%= reservas.length %></h2>
+  <h2>Reservas del Mes de <%= getMonthName(selectedMonth) %> : <%= reservas.length %></h2>
 
     <ul class="list-unstyled">
       <% for (let reserva of reservas) { %>

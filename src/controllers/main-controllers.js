@@ -1,5 +1,8 @@
 const fs = require("fs");
 const path = require("path");
+
+const {validationResult } = require("express-validator");
+
 const {
   index,
   one,
@@ -15,6 +18,23 @@ module.exports = {
     res.render("nuevaReserva");
   },
   agregarDpto: async (req, res) => {
+    const resultValidation = validationResult(req)
+    
+    if(resultValidation.errors.length > 0 ){
+      
+      return res.render("nuevaReserva",{
+        errors: resultValidation.mapped()
+      })
+    }
+  },
+  /*agregarDpto: async (req, res) => {
+    const resultValidation = validationResult(req)
+    if(resultValidation.length > 0 ){
+      return res.render("nuevaReserva",{
+        errors: resultValidation.mapped()
+      })
+    }
+
     const {
       nombre,
       telefono,
@@ -75,7 +95,7 @@ module.exports = {
 
     // Redirige después de agregar un nuevo departamento
     res.redirect("/");
-  },
+  },*/
   editarVista: async (req, res) => {
     const reservaId = parseInt(req.params.id);
     const reserva = one(reservaId);
