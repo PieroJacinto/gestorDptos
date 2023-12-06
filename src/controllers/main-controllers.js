@@ -12,6 +12,7 @@ const {
 } = require("../models/reservas.model");
 module.exports = {
   home: async (req, res) => {
+    console.log("session en home: ", req.session)
     res.render("home");
   },
   nuevaReserva: async (req, res) => {

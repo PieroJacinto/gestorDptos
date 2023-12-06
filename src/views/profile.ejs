@@ -8,18 +8,22 @@
     />    
   </head>
   <header><%- include('./partials/header') %></header>
+
   <body>
-    <div class="container-fluid" style="margin-top: 6rem; padding-right: 6rem; padding-left: 6rem;">
+    <div
+      class="container-fluid"
+      style="margin-top: 6rem; padding-right: 6rem; padding-left: 6rem"
+    >
       <div class="row">
+        <% if (user.admin=="full-admin" ) { %>
         <div class="col-12 mb-4">
           <div class="card d-flex rounded">
-            
             <a href="/calendario/Mansilla">
               <img
-                src="./images/mansilla.jpg"
+                src="/images/mansilla.jpg"
                 class="card-img-top"
                 alt="Departamento "
-                style="border-radius: 10px;"
+                style="border-radius: 10px"
               />
               <div class="card-img-overlay">
                 <h5 class="card-title hoverable" style="font-size: 35px">
@@ -34,10 +38,10 @@
           <div class="card d-flex rounded">
             <a href="/calendario/Corrientes">
               <img
-                src="./images/corrientes.jpg"
+                src="/images/corrientes.jpg"
                 class="card-img-top"
                 alt="Departamento"
-                style="border-radius: 10px;"
+                style="border-radius: 10px"
               />
               <div class="card-img-overlay">
                 <h5 class="card-title hoverable" style="font-size: 35px">
@@ -49,13 +53,32 @@
         </div>
 
         <div class="col-12 mb-4">
+            <div class="card d-flex rounded">
+              <a href="/calendario/Las-Heras">
+                <img
+                  src="/images/corrientes.jpg"
+                  class="card-img-top"
+                  alt="Departamento "
+                  style="border-radius: 10px"
+                />
+                <div class="card-img-overlay">
+                  <h5 class="card-title hoverable" style="font-size: 35px">
+                    Las Heras
+                  </h5>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        <% } %> <% if (user.admin=="las-heras-admin" ) { %>
+        <div class="col-12 mb-4">
           <div class="card d-flex rounded">
             <a href="/calendario/Las-Heras">
               <img
-                src="./images/corrientes.jpg"
+                src="/images/corrientes.jpg"
                 class="card-img-top"
                 alt="Departamento "
-                style="border-radius: 10px;"
+                style="border-radius: 10px"
               />
               <div class="card-img-overlay">
                 <h5 class="card-title hoverable" style="font-size: 35px">
@@ -66,6 +89,28 @@
           </div>
         </div>
 
+        <% } %>
+
+        <% if (user.admin=="corrientes-admin" ) { %>
+            <div class="col-12 mb-4">
+                <div class="card d-flex rounded">
+                  <a href="/calendario/Corrientes">
+                    <img
+                      src="/images/corrientes.jpg"
+                      class="card-img-top"
+                      alt="Departamento"
+                      style="border-radius: 10px"
+                    />
+                    <div class="card-img-overlay">
+                      <h5 class="card-title hoverable" style="font-size: 35px">
+                        Corrientes
+                      </h5>
+                    </div>
+                  </a>
+                </div>
+              </div>
+    
+            <% } %>
       </div>
     </div>
 

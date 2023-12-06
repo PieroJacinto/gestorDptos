@@ -3,7 +3,7 @@ require("dotenv").config();
 
 //REQUERIMOPS EXPRESS
 const express = require("express");
-
+const userLoggedMiddleware = require("./middlewares/userLoggedMiddleware")
 const methodOverride = require('method-override');
 
 //REQUERIMOS SESSION
@@ -36,10 +36,13 @@ app.use(session({
 app.use(methodOverride('_method'));
 //REQUERIMOS EL ROUTEADOR PRINCIPAL
 
-const mainRouter = require("./routes/main-router");
+app.use(userLoggedMiddleware);
 
+const mainRouter = require("./routes/main-router");
+const userRouter = require("./routes/users-router")
 // MONTAMOS MAIN ROUTER
-app.use(mainRouter);
+app.use("/", mainRouter);
+app.use("/users", userRouter);
 
 //EXPORTAMOS APP
 module.exports = app
