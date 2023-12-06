@@ -54,24 +54,6 @@
     "cantidadDias": 1
   },
   {
-    "id": 1701633000922,
-    "nombre": "juan",
-    "telefono": "11223344",
-    "departamento": "Las-Heras",
-    "fechaCheckIn": "2023-12-06",
-    "horaCheckIn": "",
-    "fechaCheckOut": "2023-12-12",
-    "horaCheckOut": "",
-    "cantidadHuespedes": 4,
-    "moneda": "USD",
-    "precioPorDia": 45000,
-    "senia": 5000,
-    "total": 270000,
-    "restaPagar": 265000,
-    "fechaReserva": "2023-12-03",
-    "cantidadDias": 6
-  },
-  {
     "id": 1701803913336,
     "nombre": "Noelia",
     "telefono": "+54 9 2974 29-4497",
@@ -88,5 +70,41 @@
     "restaPagar": 223000,
     "fechaReserva": "2023-12-05",
     "cantidadDias": 6
+  },
+  {
+    "id": 1701900801304,
+    "nombre": "Martin",
+    "telefono": "1133688942",
+    "departamento": "Las-Heras",
+    "fechaCheckIn": "2023-12-07",
+    "horaCheckIn": "",
+    "fechaCheckOut": "2023-12-09",
+    "horaCheckOut": "",
+    "cantidadHuespedes": 4,
+    "moneda": "ARS",
+    "precioPorDia": 30000,
+    "senia": 5000,
+    "total": 60000,
+    "restaPagar": 55000,
+    "fechaReserva": "2023-12-06",
+    "cantidadDias": 2
+  },
+  {
+    "id": 1701900887945,
+    "nombre": "juan",
+    "telefono": "12345678",
+    "departamento": "Mansilla",
+    "fechaCheckIn": "2023-12-06",
+    "horaCheckIn": "",
+    "fechaCheckOut": "2023-12-08",
+    "horaCheckOut": "",
+    "cantidadHuespedes": 4,
+    "moneda": "USD",
+    "precioPorDia": 50,
+    "senia": 0,
+    "total": 100,
+    "restaPagar": 100,
+    "fechaReserva": "2023-12-06",
+    "cantidadDias": 2
   }
 ]

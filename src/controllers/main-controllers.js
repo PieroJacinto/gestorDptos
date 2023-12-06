@@ -270,31 +270,35 @@ module.exports = {
     });   
     
 
-    // Calcular totales
-    const totalPesos = reservasFiltradas.reduce(
-      (total, reserva) => total + reserva.total,
-      0
-    );
-    const totalDolares = reservasFiltradas.reduce((total, reserva) => {
-      return reserva.moneda === "USD" ? total + reserva.total : total;
-    }, 0);
+   // Calcular totales en pesos
+   const reservasEnPesos = reservasFiltradas.filter(reserva => reserva.moneda === 'ARS');
+   const totalPesos = reservasEnPesos.reduce((total, reserva) => total + reserva.total, 0);
 
-      // Calcular Total Pagado
-    const totalPagado = reservasFiltradas.reduce(
-      (total, reserva) => total + reserva.senia,
-      0
-    );
+   // Calcular totales en dólares
+   const reservasEnDolares = reservasFiltradas.filter(reserva => reserva.moneda === 'USD');
+   const totalDolares = reservasEnDolares.reduce((total, reserva) => total + reserva.total, 0);
 
-    res.render("facturacion", {
-      departamento,
-      reservas: reservasFiltradas,
-      totalPesos,
-      totalDolares,
-      formatearFecha,
-      selectedMonth,
-      getMonthName,
-      totalPagado
-    });
+   // Calcular Total Pagado en pesos y dólares
+   const totalPagadoEnPesos = reservasEnPesos.reduce((total, reserva) => total + reserva.senia, 0);
+   const totalPagadoEnDolares = reservasEnDolares.reduce((total, reserva) => total + reserva.senia, 0);
+
+   // Calcular lo que resta pagar en pesos y dólares
+   const restaPagarEnPesos = totalPesos - totalPagadoEnPesos;
+   const restaPagarEnDolares = totalDolares - totalPagadoEnDolares;
+
+   res.render("facturacion", {
+       departamento,
+       reservas: reservasFiltradas,
+       totalPesos,
+       totalDolares,
+       formatearFecha,
+       selectedMonth,
+       getMonthName,
+       totalPagadoEnPesos,
+       totalPagadoEnDolares,
+       restaPagarEnPesos,
+       restaPagarEnDolares
+   });
   },
   auth: async ( req, res ) => {
     if ( req.session.numeroVisitas == undefined ){

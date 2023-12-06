@@ -95,11 +95,15 @@
 
     </table>
   
-    <!-- Totales -->
-  <h2>Total a Facturar: $<%= (totalPesos + totalDolares).toLocaleString() %></h2>
-  <h2>Total Pagado en Pesos: $<%= totalPagado.toLocaleString() %></h2>
-  <h2>Total Pagado en Dólares: $<%= totalDolares.toLocaleString() %></h2>
-  <h2>Resta Pagar: $<%= (totalPesos + totalDolares - totalPagado).toLocaleString() %></h2>
+    <h2>Total a Facturar en Pesos: $<%= totalPesos.toLocaleString() %></h2>
+    <h2>Total a Facturar en Dólares: $<%= totalDolares.toLocaleString() %></h2>
+
+    <h2>Total Pagado en Pesos: $<%= totalPagadoEnPesos.toLocaleString() %></h2>
+    <h2>Total Pagado en Dólares: $<%= totalPagadoEnDolares.toLocaleString() %></h2>
+
+    <h2>Resta Pagar en Pesos: $<%= restaPagarEnPesos.toLocaleString() %></h2>
+    <h2>Resta Pagar en Dólares: $<%= restaPagarEnDolares.toLocaleString() %></h2>
+
   </div>
 
   <!-- Agregar enlace a Bootstrap JS y jQuery (opcional) -->
