@@ -65,7 +65,8 @@
     <!-- Tabla de gastos -->
     <table class="table table-striped table-primary mt-4 mb-4 fs-3">
       <thead>
-        <tr>          
+        <tr>
+          <th>#</th>
           <th>Tipo de Gasto</th>
           <th>Precio</th>
           <th>Año</th>
@@ -75,8 +76,9 @@
       </thead>
       <tbody>
         <% let totalGastos = 0; %>
-        <% gastos.forEach(gasto => { %>
-          <tr>            
+        <% gastos.forEach((gasto, index) => { %>
+          <tr class="table-hover">
+            <th scope="row"><%= index + 1 %></th>
             <td><%= gasto.tipoGasto %></td>
             <td><strong>$<%= parseInt(gasto.precio).toLocaleString() %></strong></td>
             <td><%= gasto.year %></td>
