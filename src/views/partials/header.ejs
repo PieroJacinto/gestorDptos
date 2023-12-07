@@ -3,26 +3,23 @@
     <div class="container-fluid">
         <% if (!locals.isLogged) { %>
             <a href="/">
-
-                <button class="btn btn-dark  fs-2" type="button"  >
+                <button class="btn btn-dark fs-2" type="button">
                     Hola!!!
                 </button>        
-
             </a>
         <% } %>
         <% if (locals.isLogged) { %>
             <div class="navbar">                
                 <div class="dropdown">
-                  <button class="btn btn-dark dropdown-toggle fs-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Hola <%= locals.userLogged.nombre %>
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="/users/profile">Profile</a>
-                    <a class="dropdown-item" href="/users/logout">Logout</a>
-                  </div>
+                    <button class="btn btn-dark dropdown-toggle fs-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Hola <%= locals.userLogged.nombre %>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/users/profile">Profile</a>
+                        <a class="dropdown-item" href="/users/logout">Logout</a>
+                    </div>
                 </div>
-              </div>
-              
+            </div>
         <% } %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,71 +28,67 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
                 <% if (locals.isLogged) { %>                    
-                    <li class="nav-item dropdown">
-                        <div class="dropdown">
-                            <a class="nav-link fs-3 dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Calendario
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <% if (locals.userLogged.admin == "full-admin") { %>
+                    <li class="nav-item">
+                        <% if (locals.userLogged.admin == "full-admin") { %>
+                            <div class="dropdown">
+                                <a class="nav-link fs-3 dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Calendario
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/calendario/Mansilla">Mansilla</a>
                                     <a class="dropdown-item" href="/calendario/Las-Heras">Las Heras</a>
                                     <a class="dropdown-item" href="/calendario/Corrientes">Corrientes</a>
-                                <% } else if (locals.userLogged.admin == "corrientes-admin") { %>
-                                    <a class="dropdown-item" href="/calendario/Corrientes">Corrientes</a>
-                                <% } else { %>
-                                    <a class="dropdown-item" href="/calendario/Las-Heras">Las Heras</a>
-                                <% } %> 
+                                </div>
                             </div>
-                        </div>
+                        <% } else if (locals.userLogged.admin == "corrientes-admin") { %>
+                            <a class="nav-link fs-3" href="/calendario/Corrientes">Calendario</a>
+                        <% } else { %>
+                            <a class="nav-link fs-3" href="/calendario/Las-Heras">Calendario</a>
+                        <% } %> 
                     </li>
                 <% } %>
                 <% if (!locals.isLogged) { %>
                     <li class="nav-item">
                         <a class="nav-link fs-3" href="/users/login">Login</a>
                     </li>       
-                 
                 <% } %>
                 <% if (locals.isLogged && locals.userLogged.admin == "full-admin") { %>
                     <li class="nav-item">
                         <a class="nav-link fs-3" href="/nueva">Cargar Reserva</a>
                     </li>                 
                 <% } %>         
-                <% if (locals.isLogged ) { %>
-                    <li class="nav-item dropdown">
-                        <div class="dropdown">
-                            <a class="nav-link fs-3 dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Gastos
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/agregar/gastos">Agregar Gastos</a>
-                                <a class="dropdown-item" href="/ver/gastos">Ver Gastos</a>
-                            </div>
+                <% if (locals.isLogged) { %>
+                    <div class="dropdown">
+                        <a class="nav-link fs-3 dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Gastos
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/agregar/gastos">Agregar Gastos</a>
+                            <a class="dropdown-item" href="/ver/gastos">Ver Gastos</a>
                         </div>
-                    </li>       
-                    <li class="nav-item dropdown">
-                        <div class="dropdown"> <!-- Agrega este contenedor -->
-                            <a class="nav-link fs-3 dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Facturacion
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <% if (locals.userLogged.admin == "full-admin") { %>
-                                    <a class="dropdown-item" href="/facturacion/Mansilla">Mansilla</a>
-                                    <a class="dropdown-item" href="/facturacion/Las-Heras">Las Heras</a>
-                                    <a class="dropdown-item" href="/facturacion/Corrientes">Corrientes</a>                                 
-                                <% } else if (locals.userLogged.admin == "corrientes-admin") { %>
-                                    <a class="dropdown-item" href="/facturacion/Corrientes">Corrientes</a>
-                                <% } else { %>
-                                    <a class="dropdown-item" href="/facturacion/Las-Heras">Las Heras</a>
-                                <% } %>  %>
-                            </div>
+                    </div>
+                    <div class="dropdown">
+                        <a class="nav-link fs-3 dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Facturacion
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <% if (locals.userLogged.admin == "full-admin") { %>
+                                <a class="dropdown-item" href="/facturacion/Mansilla">Mansilla</a>
+                                <a class="dropdown-item" href="/facturacion/Las-Heras">Las Heras</a>
+                                <a class="dropdown-item" href="/facturacion/Corrientes">Corrientes</a>                                 
+                            <% } else if (locals.userLogged.admin == "corrientes-admin") { %>
+                                <a class="dropdown-item" href="/facturacion/Corrientes">Corrientes</a>
+                            <% } else { %>
+                                <a class="dropdown-item" href="/facturacion/Las-Heras">Las Heras</a>
+                            <% } %>  
                         </div>
-                    </li>
+                    </div>
                 <% } %>
             </ul>
         </div>
     </div>
 </nav>
+
