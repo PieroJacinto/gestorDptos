@@ -31,11 +31,11 @@
                     <li class="nav-item">
                         <% if (locals.userLogged.admin == "full-admin") { %>
                             <div class="dropdown">
-                                <a class="nav-link fs-3 dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                <a class="nav-link fs-3 dropdown-toggle" href="#" id="navbarDropdownCalendario" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Calendario
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownCalendario">
                                     <a class="dropdown-item" href="/calendario/Mansilla">Mansilla</a>
                                     <a class="dropdown-item" href="/calendario/Las-Heras">Las Heras</a>
                                     <a class="dropdown-item" href="/calendario/Corrientes">Corrientes</a>
@@ -46,6 +46,25 @@
                         <% } else { %>
                             <a class="nav-link fs-3" href="/calendario/Las-Heras">Calendario</a>
                         <% } %> 
+                    </li>
+                    <li class="nav-item">
+                        <% if (locals.userLogged.admin == "full-admin") { %>
+                            <div class="dropdown">
+                                <a class="nav-link fs-3 dropdown-toggle" href="#" id="navbarDropdownFacturacion" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Facturacion
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownFacturacion">
+                                    <a class="dropdown-item" href="/facturacion/Mansilla">Mansilla</a>
+                                    <a class="dropdown-item" href="/facturacion/Las-Heras">Las Heras</a>
+                                    <a class="dropdown-item" href="/facturacion/Corrientes">Corrientes</a>                                 
+                                </div>
+                            </div>
+                        <% } else if (locals.userLogged.admin == "corrientes-admin") { %>
+                            <a class="nav-link fs-3" href="/facturacion/Corrientes">Facturacion</a>
+                        <% } else { %>
+                            <a class="nav-link fs-3" href="/facturacion/Las-Heras">Facturacion</a>
+                        <% } %>  
                     </li>
                 <% } %>
                 <% if (!locals.isLogged) { %>
@@ -60,30 +79,13 @@
                 <% } %>         
                 <% if (locals.isLogged) { %>
                     <div class="dropdown">
-                        <a class="nav-link fs-3 dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        <a class="nav-link fs-3 dropdown-toggle" href="#" id="navbarDropdownGastos" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Gastos
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownGastos">
                             <a class="dropdown-item" href="/agregar/gastos">Agregar Gastos</a>
                             <a class="dropdown-item" href="/ver/gastos">Ver Gastos</a>
-                        </div>
-                    </div>
-                    <div class="dropdown">
-                        <a class="nav-link fs-3 dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Facturacion
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <% if (locals.userLogged.admin == "full-admin") { %>
-                                <a class="dropdown-item" href="/facturacion/Mansilla">Mansilla</a>
-                                <a class="dropdown-item" href="/facturacion/Las-Heras">Las Heras</a>
-                                <a class="dropdown-item" href="/facturacion/Corrientes">Corrientes</a>                                 
-                            <% } else if (locals.userLogged.admin == "corrientes-admin") { %>
-                                <a class="dropdown-item" href="/facturacion/Corrientes">Corrientes</a>
-                            <% } else { %>
-                                <a class="dropdown-item" href="/facturacion/Las-Heras">Las Heras</a>
-                            <% } %>  
                         </div>
                     </div>
                 <% } %>
@@ -91,4 +93,3 @@
         </div>
     </div>
 </nav>
-
