@@ -300,13 +300,8 @@ module.exports = {
        restaPagarEnDolares
    });
   },
-  auth: async ( req, res ) => {
-    if ( req.session.numeroVisitas == undefined ){
-      req.session.numeroVisitas = 0;
-    }
-    req.session.numeroVisitas++;
-    console.log("visitas: " , req.session.numeroVisitas)
-    res.status(200).send("session tiene el numero: " + req.session.numeroVisitas);
+  gastos: async ( req, res ) => {
+    res.render("gastos")
 
   }
 };

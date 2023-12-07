@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <%- include('./partials/head') %>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+</head>
+<header>
+  <%- include('./partials/header') %>
+</header>
+<body class="mt-4">
+  <div class="container">
+    <h1 class="text-center mt-4 mb-4">Agregar Gastos</h1>
+
+    <!-- Formulario para agregar gastos -->
+    <form action="/gastos" method="post">
+      <div class="mb-3">
+        <label for="tipoGasto" class="form-label"><strong> Tipo de Gasto</strong></label>
+        <select class="form-select" id="tipoGasto" name="tipoGasto" required>
+          <option value="internet_tv">Internet/TV</option>
+          <option value="expensas">Expensas</option>
+          <option value="luz">Luz</option>
+          <option value="gas">Gas</option>
+          <option value="agua">Agua</option>
+          <option value="abl">ABL</option>          
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="precio" class="form-label"><strong>Precio</strong></label>
+        <input type="number" class="form-control" id="precio" name="precio" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="mes" class="form-label"><strong>Mes</strong></label>
+        <input type="text" class="form-control" id="mes" name="mes" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="anio" class="form-label"><strong>Año</strong> </label>
+        <input type="number" class="form-control" id="anio" name="anio" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary fs-4">Agregar Gasto</button>
+    </form>
+  </div>
+
+  <!-- Incluye el JS de Bootstrap y Popper.js (si es necesario) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Scripts de Bootstrap y cualquier otro script necesario -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
