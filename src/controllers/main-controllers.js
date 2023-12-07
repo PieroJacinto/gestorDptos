@@ -302,6 +302,8 @@ module.exports = {
   },
   gastos: async ( req, res ) => {
     res.render("gastos")
-
+  },
+  agregarGastos: async ( req, res ) => {
+    console.log("body gastos: ", req.body)
   }
 };

@@ -11,8 +11,7 @@
             </a>
         <% } %>
         <% if (locals.isLogged) { %>
-            <div class="navbar">
-                
+            <div class="navbar">                
                 <div class="dropdown">
                   <button class="btn btn-dark dropdown-toggle fs-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Hola <%= locals.userLogged.nombre %>
@@ -64,7 +63,18 @@
                     </li>                 
                 <% } %>         
                 <% if (locals.isLogged ) { %>
-                 
+                    <li class="nav-item dropdown">
+                        <div class="dropdown">
+                            <a class="nav-link fs-3 dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Gastos
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/agregar/gastos">Agregar Gastos</a>
+                                <a class="dropdown-item" href="/ver/gastos">Ver Gastos</a>
+                            </div>
+                        </div>
+                    </li>       
                     <li class="nav-item dropdown">
                         <div class="dropdown"> <!-- Agrega este contenedor -->
                             <a class="nav-link fs-3 dropdown-toggle" href="#" id="navbarDropdown" role="button"

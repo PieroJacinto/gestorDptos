@@ -22,7 +22,7 @@
     <h1 class="text-center mt-4 mb-4">Agregar Gastos</h1>
 
     <!-- Formulario para agregar gastos -->
-    <form action="/gastos" method="post">
+    <form action="/agregar/gastos" method="POST" id="formulario-gastos">
       <div class="mb-3">
         <label for="tipoGasto" class="form-label"><strong> Tipo de Gasto</strong></label>
         <select class="form-select" id="tipoGasto" name="tipoGasto" required>
@@ -59,11 +59,52 @@
             <option value="<%= i + 1 %>" <% if (i + 1 === mesActual) { %>selected<% } %>><%= meses[i] %></option>
           <% } %>
         </select>
-      </div>
-
-      <!-- Input oculto para el departamento -->
-      <input type="hidden" id="departamento" name="departamento" value="<%= locals.userLogged.departamento %>">
-
+        </div>
+            <% if (locals.userLogged.admin == "full-admin") { %>
+                <div class="mb-3">
+                    <label for="departamento" class="form-label">Departamento:</label>
+                    <select 
+                        id="departamento" 
+                        name="departamento" 
+                        class="form-select <%= locals.errors && errors.departamento ? "is-invalid" : null %>"
+                        value= "<%= locals.oldData ? oldData.departamento : null %>"
+                    >   
+                        <option value=""> Elegí un Departamento</option>
+                        <% 
+                            const departamentos = ["Mansilla", "Corrientes", "Las-Heras"]
+                        %>
+                        <% for( const oneDpto of departamentos ) { %>
+                            <option 
+                                value="<%= oneDpto %>"
+                                <%= locals.oldData && (oneDpto === oldData.departamento) ? "selected": null %>                                
+                            >
+                            <%= oneDpto %></option>
+                        <% } %>                       
+                    </select>
+                    <% if (locals.errors && errors.departamento ) { %>
+                        <div class="text-danger"> <%= errors.departamento.msg %></div>
+                    <% } %>
+                </div>
+            <% } %>
+            <% if (locals.userLogged.admin == "las-heras-admin") { %>
+                <!-- Input oculto para el departamento -->
+                <input 
+                    type="hidden" 
+                    id="departamento" 
+                    name="departamento" 
+                    value="Las-Heras"
+                >             
+            <% } %>
+            <% if (locals.userLogged.admin == "corrientes-admin") { %>
+                <!-- Input oculto para el departamento -->
+                <input 
+                    type="hidden" 
+                    id="departamento" 
+                    name="departamento" 
+                    value="Corrientes"
+                >          
+            <% } %>
+         
       <button type="submit" class="btn btn-primary fs-4">Agregar Gasto</button>
     </form>
   </div>
