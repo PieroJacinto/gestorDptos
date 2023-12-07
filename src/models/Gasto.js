@@ -9,8 +9,8 @@ const Gasto = {
     },
 
     findByPk: function (id) {
-        let allGastos = Gasto.index();
-        let gastoFound = allGastos.find(oneGasto => oneGasto.id === id);
+        const allGastos = Gasto.index();
+        const gastoFound = allGastos.find((oneGasto) => oneGasto.id == id);
         return gastoFound;
     },
 

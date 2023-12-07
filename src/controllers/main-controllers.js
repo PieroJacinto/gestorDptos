@@ -323,5 +323,35 @@ module.exports = {
   },
   allGastos: async (req,res) => {
     res.render("verGastos")
+  },
+  updateGastoVista: async (req, res) => {
+    console.log(req.params.id)
+    try {
+      const gasto = await Gasto.findByPk(req.params.id);
+      console.log("gasto to upd: ", gasto)
+      if (!gasto) {
+        return res.status(404).send('Gasto no encontrado');
+      }
+      res.render('actualizarGasto', { gasto }); // Reemplaza 'actualizarGasto' con el nombre de tu vista para actualizar gastos
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Error al obtener el gasto para actualizar');
+    }
+  }, 
+  updateGasto: async (req, res) => {
+    console.log(req.params.id)
+    
+  }, 
+  deleteGasto: (req, res) => {
+    console.log("estoy en destroy");
+    const gastos = Gasto.index();
+    const id = req.params.id;
+    const gastosRestantes = gastos.filter((gasto) => gasto.id != id);
+    const gastosGuardar = JSON.stringify(gastosRestantes, null, 2);
+    fs.writeFileSync(
+      path.resolve(__dirname, "../data/gastos.json"),
+      gastosGuardar
+    );
+    res.redirect("/");
   }
 };

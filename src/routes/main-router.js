@@ -32,6 +32,12 @@ router.get("/agregar/gastos", mainControllers.gastos)
 router.post("/agregar/gastos", mainControllers.agregarGastos)
 
 router.get("/ver/gastos", mainControllers.verGastos)
+
+router.get("/gasto/:id/update", mainControllers.updateGastoVista)
+router.put("/gasto/:id/update", mainControllers.updateGasto)
+
+router.delete("/gasto/:id/delete", mainControllers.deleteGasto)
+
 router.get("/all/gastos", mainControllers.allGastos)
 
 
