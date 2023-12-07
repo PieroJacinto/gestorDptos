@@ -106,5 +106,23 @@
     "restaPagar": 100,
     "fechaReserva": "2023-12-06",
     "cantidadDias": 2
+  },
+  {
+    "id": 1701930904282,
+    "nombre": "Carolina",
+    "telefono": "+54 9 2976 21-4942",
+    "departamento": "Corrientes",
+    "fechaCheckIn": "2023-12-06",
+    "horaCheckIn": "",
+    "fechaCheckOut": "2023-12-07",
+    "horaCheckOut": "",
+    "cantidadHuespedes": 4,
+    "moneda": "ARS",
+    "precioPorDia": 20000,
+    "senia": 20000,
+    "total": 20000,
+    "restaPagar": 0,
+    "fechaReserva": "2023-12-07",
+    "cantidadDias": 1
   }
 ]
