@@ -4,9 +4,9 @@
 <head>
   
   <title>Facturación Mensual</title>
-
+  <%- include('./partials/head') %>
   <!-- Agregar enlaces a Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  
   <!-- Puedes cambiar la versión y el enlace según la versión de Bootstrap que prefieras -->
 </head>
 <header>
@@ -14,14 +14,14 @@
 </header>
 <body >
 
-  <h1 class="text-center mb-4 mt-4">Facturación Mensual para <%= departamento %></h1>
+  <h1 class="text-center mb-4 mt-4 fonts-1">Facturación Mensual para <%= departamento %></h1>
   
   <!-- Formulario centrado con estilos de Bootstrap -->
-  <form class="mx-auto mb-4" style="max-width: 300px;" action="/facturacion/<%= departamento %>" method="get">
+  <form class="mx-auto mb-4" style="max-width: 350px;" action="/facturacion/<%= departamento %>" method="get">
     <div class="form-group">
-      <label for="year"><strong>Año:</strong></label>
+      <label class="fs-3" for="year"><strong>Año:</strong></label>
       <!-- Convertir el campo de año en un select -->
-      <select class="form-control" name="year" id="year">
+      <select class="form-control " name="year" id="year">
         <% const yearActual = new Date().getFullYear(); %>
         <% for (let i = 2030; i >= 2000; i--) { %>
           <option value="<%= i %>" <% if (i === yearActual) { %>selected<% } %>><%= i %></option>
@@ -30,7 +30,7 @@
     </div>
 
     <div class="form-group">
-      <label for="month"><strong>Mes:</strong></label>
+      <label class="fs-3" for="month "><strong>Mes:</strong></label>
       <!-- Convertir el campo de mes en un select con nombres de meses en español -->
       <select class="form-control" name="month" id="month">
         <% const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']; %>
@@ -42,8 +42,8 @@
     </div>
     
 
-    <div class="text-center">
-      <button type="submit" class="btn btn-primary">Filtrar</button>
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-primary fs-4">Filtrar</button>
     </div>
   </form>
   <div class="text-center mb-4">
@@ -57,7 +57,7 @@
     %>
   
   <div class="container-fluid">
-    <h2 class="text-center mb-4">
+    <h2 class="text-center mb-4 fonts-1">
       <% if (!selectedMonth) { %>
         Reservas Totales para <%= departamento %>
       <% } else { %>
@@ -65,7 +65,7 @@
       <% } %>
     </h2>
   
-    <table class="table table-primary mt-4 mb-4">
+    <table class="table table-primary mt-4 mb-4 fs-3">
       <thead>
         <tr>
           <th>Nombre</th>
@@ -95,22 +95,23 @@
 
     </table>
   
-    <h2>Total a Facturar en Pesos: $<%= totalPesos.toLocaleString() %></h2>
-    <h2>Total a Facturar en Dólares: $<%= totalDolares.toLocaleString() %></h2>
+    <h2 class="fonts-1" >Total a Facturar en Pesos: $<%= totalPesos.toLocaleString() %></h2>
+    <h2 class="fonts-1">Total a Facturar en Dólares: $<%= totalDolares.toLocaleString() %></h2>
 
-    <h2>Total Pagado en Pesos: $<%= totalPagadoEnPesos.toLocaleString() %></h2>
-    <h2>Total Pagado en Dólares: $<%= totalPagadoEnDolares.toLocaleString() %></h2>
+    <h2 class="fonts-1">Total Pagado en Pesos: $<%= totalPagadoEnPesos.toLocaleString() %></h2>
+    <h2 class="fonts-1">Total Pagado en Dólares: $<%= totalPagadoEnDolares.toLocaleString() %></h2>
 
-    <h2>Resta Pagar en Pesos: $<%= restaPagarEnPesos.toLocaleString() %></h2>
-    <h2>Resta Pagar en Dólares: $<%= restaPagarEnDolares.toLocaleString() %></h2>
+    <h2 class="fonts-1">Resta Pagar en Pesos: $<%= restaPagarEnPesos.toLocaleString() %></h2>
+    <h2 class="fonts-1">Resta Pagar en Dólares: $<%= restaPagarEnDolares.toLocaleString() %></h2>
 
   </div>
 
-  <!-- Agregar enlace a Bootstrap JS y jQuery (opcional) -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <!-- Puedes cambiar la versión y el enlace según la versión de Bootstrap que prefieras -->
+   <!-- Incluye el JS de Bootstrap y Popper.js (si es necesario) -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+   <!-- Scripts de Bootstrap y cualquier otro script necesario -->
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>

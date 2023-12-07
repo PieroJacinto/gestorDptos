@@ -11,8 +11,7 @@ const {
   agregarNuevoDepartamento,
 } = require("../models/reservas.model");
 module.exports = {
-  home: async (req, res) => {
-    console.log("session en home: ", req.session)
+  home: async (req, res) => {    
     res.render("home");
   },
   nuevaReserva: async (req, res) => {
