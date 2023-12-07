@@ -86,7 +86,11 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownGastos">
                             <a class="dropdown-item" href="/agregar/gastos">Agregar Gastos</a>
+                            <% if (locals.userLogged.admin == "full-admin") { %>
+                                <a class="dropdown-item" href="/all/gastos">Ver Gastos</a>
+                            <% } else { %>
                             <a class="dropdown-item" href="/ver/gastos">Ver Gastos</a>
+                            <% } %>
                         </div>
                     </div>
                 <% } %>

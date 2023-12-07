@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const {validationResult } = require("express-validator");
-
+const Gasto = require("../models/Gasto")
 const {
   index,
   one,
@@ -303,6 +303,25 @@ module.exports = {
     res.render("gastos")
   },
   agregarGastos: async ( req, res ) => {
-    console.log("body gastos: ", req.body)
+    const gasto = req.body
+    Gasto.agregarNuevoGasto(gasto)
+    res.redirect("/");    
+  },
+  verGastos: async (req, res) => {
+    const userDepartamento = req.session.userLogged.departamento;
+    const userYear = req.query.year || new Date().getFullYear().toString();
+    const userMonth = req.query.month || (new Date().getMonth() + 1).toString();
+
+    // Filtrar gastos por departamento, año y mes
+    const filteredGastos = Gasto.index().filter(gasto =>
+      gasto.departamento === userDepartamento &&
+      gasto.year === userYear &&
+      gasto.month === userMonth
+    );
+
+    res.render("verGastos", { gastos: filteredGastos, userYear, userMonth });
+  },
+  allGastos: async (req,res) => {
+    res.render("verGastos")
   }
 };

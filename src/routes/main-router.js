@@ -31,6 +31,9 @@ router.get("/facturacion/:departamento", mainControllers.facturacion);
 router.get("/agregar/gastos", mainControllers.gastos)
 router.post("/agregar/gastos", mainControllers.agregarGastos)
 
+router.get("/ver/gastos", mainControllers.verGastos)
+router.get("/all/gastos", mainControllers.allGastos)
+
 
 
 //EXPORTAMOS ROUTER
