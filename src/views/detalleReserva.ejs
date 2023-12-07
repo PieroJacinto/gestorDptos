@@ -1,79 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('./partials/head') %>
-  </head>
 
-  <body style="background-color: rgba(247, 247, 247, 0.9)">
-    <header><%- include('./partials/header') %></header>
-    <main>
-      <div
-        class="card mt-4"
-        style="
+<head>
+  <%- include('./partials/head') %>
+</head>
+
+<body style="background-color: rgba(247, 247, 247, 0.9)">
+  <header><%- include('./partials/header') %></header>
+  <main>
+    <div class="card mt-4" style="
           width: 25%;
           margin: auto;
           border: 2px solid #dee2e6;
           border-radius: 8px;
-        "
-      >
-        <div class="card-body text-center text-lg">
-          <h2 class="card-title">Reserva de: <%= reserva.nombre %></h2>
-          <hr class="my-2" />
-          <h3 class="card-subtitle mb-2 text-muted">
-            <strong>Check-In:</strong> <%= reserva.fechaCheckIn %>
-          </h3>
-          <h3 class="card-subtitle mb-2 text-muted">
-            <strong>Check-out:</strong> <%= reserva.fechaCheckOut %>
-          </h3>
-          <h3 class="card-subtitle mb-2 text-muted">
-            <strong>Cantidad de días:</strong> <%= reserva.cantidadDias %>
-          </h3>
-          <h3 class="card-subtitle mb-2 text-muted">
-            <strong>Cantidad de Huéspedes:</strong> <%=
-            reserva.cantidadHuespedes %>
-          </h3>
-          <hr class="my-2" />
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        ">
+      <div class="card-body text-center text-lg">
+        <h2 class="card-title">Reserva de: <%= reserva.nombre %>
+        </h2>
+        <hr class="my-2" />
+        <h3 class="card-subtitle mb-2 text-muted">
+          <strong>Check-In:</strong>
+          <%= reserva.fechaCheckIn %>
+        </h3>
+        <h3 class="card-subtitle mb-2 text-muted">
+          <strong>Check-out:</strong>
+          <%= reserva.fechaCheckOut %>
+        </h3>
+        <h3 class="card-subtitle mb-2 text-muted">
+          <strong>Cantidad de días:</strong>
+          <%= reserva.cantidadDias %>
+        </h3>
+        <h3 class="card-subtitle mb-2 text-muted">
+          <strong>Cantidad de Huéspedes:</strong>
+          <%= reserva.cantidadHuespedes %>
+        </h3>
+        <hr class="my-2" />
 
-          <h2>Facturacion</h2>
-          <h3 class="card-subtitle mb-2 text-muted">
-            <strong>Precio por día:</strong> $<%= reserva.precioPorDia %>
-          </h3>
-          <h3 class="card-subtitle mb-2 text-muted">
-            <strong>Total a pagar:</strong> $<%= reserva.total %>
-          </h3>
-          <h3 class="card-subtitle mb-2 text-muted">
-            <strong>Total pagado:</strong> $<%= reserva.senia %>
-          </h3>
-          <h3 class="card-subtitle mb-2 text-muted">
-            <strong>Falta pagar:</strong> $<%= reserva.restaPagar %>
-          </h3>
+        <h2>Facturacion</h2>
+        <h3 class="card-subtitle mb-2 text-muted">
+          <strong>Precio por día:</strong> $<%= reserva.precioPorDia %>
+        </h3>
+        <h3 class="card-subtitle mb-2 text-muted">
+          <strong>Total a pagar:</strong> $<%= reserva.total %>
+        </h3>
+        <h3 class="card-subtitle mb-2 text-muted">
+          <strong>Total pagado:</strong> $<%= reserva.senia %>
+        </h3>
+        <h3 class="card-subtitle mb-2 text-muted">
+          <strong>Falta pagar:</strong> $<%= reserva.restaPagar %>
+        </h3>
 
-          <!-- Separadores de línea -->
-          <hr class="my-2" />
-
-          <div
-            class="d-flex justify-content-around align-items-center mt-4 mb-2"
-          >
-            <a href="/editar/<%= reserva.id %>" class="btn btn-primary btn-lg"
-              >Editar</a
-            >
-           <!-- ... -->
-           <form action="/eliminar/<%= reserva.id %>?_method=DELETE" method="POST">
-            <!-- Resto del formulario -->
-            <button type="submit" class="btn btn-danger btn-lg">
+        <!-- Separadores de línea -->
+        <hr class="my-2" />
+        <% if (locals.userLogged.admin=="full-admin" ) { %>
+          <div class="d-flex justify-content-around align-items-center mt-4 mb-2">
+            <a href="/editar/<%= reserva.id %>" class="btn btn-primary btn-lg">Editar</a>
+            <!-- ... -->
+            <form action="/eliminar/<%= reserva.id %>?_method=DELETE" method="POST">
+              <!-- Resto del formulario -->
+              <button type="submit" class="btn btn-danger btn-lg">
                 Eliminar
-            </button>
-        </form>
-  <!-- ... -->
-  
-          </div>
-        </div>
-      </div>
-    </main>
+              </button>
+            </form>
 
-    <!-- Scripts de Bootstrap y cualquier otro script necesario -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  </body>
+            <% } else { %>
+              <a <% if (locals.userLogged.admin=="full-admin" ) { %>
+                href="/users/profile"
+                <% } else if (locals.userLogged.admin=="corrientes-admin" ){ %>
+                  href="/calendario/Corrientes"
+                  <% } else {%>
+                    href="/calendario/Las-Heras"
+                    <% } %>
+                      >
+                      <button class="btn btn-success btn-lg fs-4 mt-4 mb-4 ">
+                        Volver
+                      </button>
+              </a>
+
+              <% } %>
+                <!-- ... -->
+
+          </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts de Bootstrap y cualquier otro script necesario -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
 </html>
