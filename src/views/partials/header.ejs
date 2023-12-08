@@ -11,7 +11,7 @@
         <% if (locals.isLogged) { %>
             <div class="navbar">                
                 <div class="dropdown">
-                    <button class="btn btn-dark dropdown-toggle fs-2" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"  aria-expanded="false">
+                    <button class="btn btn-dark dropdown-toggle fs-2" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Hola <%= locals.userLogged.nombre %>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -33,7 +33,7 @@
                         <% if (locals.userLogged.admin == "full-admin") { %>
                             <div class="dropdown">
                                 <a class="nav-link fs-3 dropdown-toggle" href="#" id="navbarDropdownCalendario" role="button"
-                                    data-bs-toggle="dropdown"  aria-expanded="false">
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Calendario
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownCalendario">
@@ -52,7 +52,7 @@
                         <% if (locals.userLogged.admin == "full-admin") { %>
                             <div class="dropdown">
                                 <a class="nav-link fs-3 dropdown-toggle" href="#" id="navbarDropdownFacturacion" role="button"
-                                    data-bs-toggle="dropdown"  aria-expanded="false">
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Facturacion
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownFacturacion">
@@ -78,50 +78,22 @@
                         <a class="nav-link fs-3" href="/nueva">Cargar Reserva</a>
                     </li>                 
                 <% } %>         
-                <% if (locals.isLogged && locals.userLogged.admin == "full-admin") { %>
+                <% if (locals.isLogged) { %>
                     <div class="dropdown">
                         <a class="nav-link fs-3 dropdown-toggle" href="#" id="navbarDropdownGastos" role="button"
-                            data-bs-toggle="dropdown"  aria-expanded="false">
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Gastos
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownGastos">
-                            <!-- Dropdown para Corrientes -->
-                            <div class="dropdown">
-                                <a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownCorrientes" role="button"
-                                    data-bs-toggle="dropdown"  aria-expanded="false">
-                                    Corrientes
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownCorrientes">
-                                    <a class="dropdown-item" href="/agregar/gastos?departamento=Corrientes">Agregar Gastos</a>
-                                    <a class="dropdown-item" href="/ver/gastos?departamento=Corrientes">Ver Gastos</a>
-                                </div>
-                            </div>
-                            <!-- Dropdown para Mansilla -->
-                            <div class="dropdown">
-                                <a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMansilla" role="button"
-                                    data-bs-toggle="dropdown"  aria-expanded="false">
-                                    Mansilla
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMansilla">
-                                    <a class="dropdown-item" href="/agregar/gastos?departamento=Mansilla">Agregar Gastos</a>
-                                    <a class="dropdown-item" href="/ver/gastos?departamento=Mansilla">Ver Gastos</a>
-                                </div>
-                            </div>
-                            <!-- Dropdown para Las Heras -->
-                            <div class="dropdown">
-                                <a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownLasHeras" role="button"
-                                    data-bs-toggle="dropdown"  aria-expanded="false">
-                                    Las Heras
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownLasHeras">
-                                    <a class="dropdown-item" href="/agregar/gastos?departamento=Las-Heras">Agregar Gastos</a>
-                                    <a class="dropdown-item" href="/ver/gastos?departamento=Las-Heras">Ver Gastos</a>
-                                </div>
-                            </div>
+                            <a class="dropdown-item" href="/agregar/gastos">Agregar Gastos</a>
+                            <% if (locals.userLogged.admin == "full-admin") { %>
+                                <a class="dropdown-item" href="/all/gastos">Ver Gastos</a>
+                            <% } else { %>
+                            <a class="dropdown-item" href="/ver/gastos">Ver Gastos</a>
+                            <% } %>
                         </div>
                     </div>
                 <% } %>
-                
             </ul>
         </div>
     </div>
