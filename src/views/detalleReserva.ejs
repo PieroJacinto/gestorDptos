@@ -39,16 +39,16 @@
 
         <h2>Facturacion</h2>
         <h3 class="card-subtitle mb-2 text-muted">
-          <strong>Precio por día:</strong> $<%= reserva.precioPorDia %>
+          <strong>Precio por día:</strong> $<%= reserva.precioPorDia.toLocaleString() %>
         </h3>
         <h3 class="card-subtitle mb-2 text-muted">
-          <strong>Total a pagar:</strong> $<%= reserva.total %>
+          <strong>Total a pagar:</strong> $<%= reserva.total.toLocaleString() %>
         </h3>
         <h3 class="card-subtitle mb-2 text-muted">
-          <strong>Total pagado:</strong> $<%= reserva.senia %>
+          <strong>Total pagado:</strong> $<%= reserva.senia.toLocaleString() %>
         </h3>
         <h3 class="card-subtitle mb-2 text-muted">
-          <strong>Falta pagar:</strong> $<%= reserva.restaPagar %>
+          <strong>Falta pagar:</strong> $<%= reserva.restaPagar.toLocaleString() %>
         </h3>
 
         <!-- Separadores de línea -->

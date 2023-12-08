@@ -59,7 +59,7 @@
   <div class="container-fluid">
     <h2 class="text-center mb-4 fonts-1">
       <% if (!selectedMonth) { %>
-        Reservas Totales para <%= departamento %>
+        Reservas Totales para <%= departamento %> 
       <% } else { %>
         Reservas del Mes de <%= getMonthName(selectedMonth) %> de <%= departamento %>
       <% } %>
@@ -71,8 +71,12 @@
           <th>Nombre</th>
           <th>Desde</th>
           <th>Hasta</th>
+          <th>Cantidad Días</th>
+          <th>Cantidad Huespedes</th>
+          <th>Precio por Día</th>
           <th>Total</th>
           <th>Pagó</th>
+          <th>Resta Pagar</th>
         </tr>
       </thead>
       <!-- Dentro de la etiqueta <tbody> -->
@@ -86,8 +90,12 @@
             </td>
             <td><%= formatearFecha(reserva.fechaCheckIn) %></td>
             <td><%= formatearFecha(reserva.fechaCheckOut) %></td>
+            <td><%= reserva.cantidadDias %></td>
+            <td><%= reserva.cantidadHuespedes %></td>
+            <td><strong>$<%= reserva.precioPorDia.toLocaleString() %></strong></td>
             <td><strong>$ <%= reserva.total.toLocaleString() %> <%= reserva.moneda %></strong></td>
             <td><strong>$ <%= reserva.senia.toLocaleString() %> <%= reserva.moneda %></strong></td>
+            <td><strong>$<%= reserva.restaPagar.toLocaleString() %></strong></td>
           </tr>
           <!-- Agregar más detalles de la reserva según tus necesidades -->
         <% } %>
@@ -95,14 +103,14 @@
 
     </table>
   
-    <h2 class="fonts-1" >Total a Facturar en Pesos: $<%= totalPesos.toLocaleString() %></h2>
-    <h2 class="fonts-1">Total a Facturar en Dólares: $<%= totalDolares.toLocaleString() %></h2>
+    <div class="fonts-1" > <strong>Total</strong> a Facturar en <strong>Pesos: $<%= totalPesos.toLocaleString() %></strong></div>
+    <div class="fonts-1"><strong>Total</strong> a Facturar en <strong>Dólares: $<%= totalDolares.toLocaleString() %></strong></div>
 
-    <h2 class="fonts-1">Total Pagado en Pesos: $<%= totalPagadoEnPesos.toLocaleString() %></h2>
-    <h2 class="fonts-1">Total Pagado en Dólares: $<%= totalPagadoEnDolares.toLocaleString() %></h2>
+    <div class="fonts-1"><strong>Total</strong> Pagado en <strong>Pesos: $<%= totalPagadoEnPesos.toLocaleString() %></strong></div>
+    <div class="fonts-1"><strong>Total</strong> Pagado en <strong>Dólares: $<%= totalPagadoEnDolares.toLocaleString() %></strong></div>
 
-    <h2 class="fonts-1">Resta Pagar en Pesos: $<%= restaPagarEnPesos.toLocaleString() %></h2>
-    <h2 class="fonts-1">Resta Pagar en Dólares: $<%= restaPagarEnDolares.toLocaleString() %></h2>
+    <div class="fonts-1"><strong>Resta</strong> Pagar en <strong>Pesos: $<%= restaPagarEnPesos.toLocaleString() %></strong></div>
+    <div class="fonts-1"><strong>Resta</strong> Pagar en <strong>Dólares: $<%= restaPagarEnDolares.toLocaleString() %></strong></div>
 
   </div>
 

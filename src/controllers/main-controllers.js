@@ -244,11 +244,7 @@ module.exports = {
       const anio = fechaLocal.getUTCFullYear();
     
       return `${dia} de ${getMonthName(mes)} de ${anio}`;
-    };
-    
-    
-    
-
+    }; 
     // Obtener reservas del departamento específico
     const reservas = obtenerDepartamento(departamento);
 
@@ -266,8 +262,7 @@ module.exports = {
         fechaCheckIn.getUTCMonth() === parseInt(month) - 1 &&
         fechaCheckIn.getUTCDate() >= 1
       );
-    });   
-    
+    });      
 
    // Calcular totales en pesos
    const reservasEnPesos = reservasFiltradas.filter(reserva => reserva.moneda === 'ARS');
