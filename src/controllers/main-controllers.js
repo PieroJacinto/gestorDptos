@@ -321,11 +321,27 @@ module.exports = {
 
     res.render("verGastos", { gastos: filteredGastos, userYear, userMonth });
   },
-  allGastos: async (req,res) => {
-    res.render("verGastos")
+  allGastos: async (req, res) => {
+    const userYear = req.query.year || new Date().getFullYear().toString();
+    const userMonth = req.query.month || (new Date().getMonth() + 1).toString();
+    let userDepartment = req.query.department || "Mansilla"; // Valor por defecto
+  
+    // Asegúrate de que userDepartment tenga un valor válido
+    const departamentosValidos = ["Mansilla", "Corrientes", "Las-Heras"];
+    if (!departamentosValidos.includes(userDepartment)) {
+      userDepartment = "Mansilla"; // O cualquier valor predeterminado que desees
+    }
+  
+    // Filtrar gastos por año, mes y departamento
+    const filteredGastos = Gasto.index().filter(gasto =>
+      gasto.year === userYear &&
+      gasto.month === userMonth &&
+      gasto.departamento === userDepartment
+    );
+  
+    res.render("allGastos", { gastos: filteredGastos, userYear, userMonth, userDepartment });
   },
   updateGastoVista: async (req, res) => {
-    console.log(req.params.id)
     try {
       const gasto = await Gasto.findByPk(req.params.id);
       console.log("gasto to upd: ", gasto)
