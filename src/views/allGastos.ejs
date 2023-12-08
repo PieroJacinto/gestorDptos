@@ -113,8 +113,10 @@
     <!-- Información adicional -->
    
       <div class="text-center mt-4">
-        <p class="fs-2"><strong>Total</strong> de gastos para <strong><%= meses[userMonth - 1] %></strong> por departamento: <strong>$<%= totalGastos.toLocaleString() %></strong></p>
-        <p class="fs-2"><strong>Total</strong> dividido por 2: <strong>$<%= (totalGastos / 2).toLocaleString() %></strong></p>
+        <p class="fs-2"><strong>Total</strong> de gastos de <strong><%= meses[userMonth - 1] %></strong> para <strong><%= userDepartment %>:</strong> <strong>$<%= totalGastos.toLocaleString() %></strong></p>
+        <% if (userDepartment != "Mansilla") { %>         
+            <p class="fs-2"><strong>Total</strong> dividido por 2: <strong>$<%= (totalGastos / 2).toLocaleString() %></strong></p>
+        <% } %>
       </div>
     
 
