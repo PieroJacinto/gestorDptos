@@ -97,11 +97,11 @@
             <td class="d-flex">
                 <form action="" style="padding-right: 1rem;" >
                     <a href="/gasto/<%= gasto.id %>/delete" class="btn mr-2 fs-4 btn-danger" role="button" aria-pressed="true">
-                      <i class="bi bi-trash"></i> Eliminar
+                        <i class="fa-solid fa-trash-can"></i> Eliminar
                     </a>
                 </form>
-              <a href="/gasto/<%= gasto.id %>/update" class="btn btn-primary fs-4" role="button" aria-pressed="true">
-                <i class="bi bi-arrow-clockwise"></i> Actualizar
+              <a href="/gasto/<%= gasto.id %>/update" class="btn btn-success fs-4" role="button" aria-pressed="true">
+                <i class="fa-solid fa-arrow-rotate-left"></i>Actualizar
               </a>
             </td>
             <% totalGastos += parseInt(gasto.precio); %>

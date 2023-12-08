@@ -319,7 +319,7 @@ module.exports = {
       gasto.month === userMonth
     );
 
-    res.render("verGastos", { gastos: filteredGastos, userYear, userMonth });
+    res.render("verGastos", { userDepartamento, gastos: filteredGastos, userYear, userMonth });
   },
   allGastos: async (req, res) => {
     const userYear = req.query.year || new Date().getFullYear().toString();

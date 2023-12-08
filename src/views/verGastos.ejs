@@ -86,15 +86,15 @@
             <td><%= meses[gasto.month - 1].toLocaleString() %></td>
             <td><%= gasto.departamento.toLocaleString() %></td>
             <td class="d-flex">
-                <form action="" style="padding-right: 1rem;" >
-                    <a href="/gasto/<%= gasto.id %>/delete" class="btn mr-2 fs-4 btn-danger" role="button" aria-pressed="true">
-                      <i class="bi bi-trash"></i> Eliminar
-                    </a>
-                </form>
-              <a href="/gasto/<%= gasto.id %>/update" class="btn btn-primary fs-4" role="button" aria-pressed="true">
-                <i class="bi bi-arrow-clockwise"></i> Actualizar
-              </a>
-            </td>
+              <form action="" style="padding-right: 1rem;" >
+                  <a href="/gasto/<%= gasto.id %>/delete" class="btn mr-2 fs-4 btn-danger" role="button" aria-pressed="true">
+                      <i class="fa-solid fa-trash-can"></i> Eliminar
+                  </a>
+              </form>
+            <a href="/gasto/<%= gasto.id %>/update" class="btn btn-success fs-4" role="button" aria-pressed="true">
+              <i class="fa-solid fa-arrow-rotate-left"></i>Actualizar
+            </a>
+          </td>
             <% totalGastos += parseInt(gasto.precio); %>
           </tr>
         <% }); %>
@@ -104,7 +104,7 @@
     <!-- Información adicional -->
    
       <div class="text-center mt-4">
-        <p class="fs-2"><strong>Total</strong> de gastos para <strong><%= meses[userMonth - 1] %></strong> por departamento: <strong>$<%= totalGastos.toLocaleString() %></strong></p>
+        <p class="fs-2"><strong>Total</strong> de gastos para <strong><%= meses[userMonth - 1] %></strong> para <strong><%= userDepartamento %>: </strong><strong>$<%= totalGastos.toLocaleString() %></strong></p>
         <p class="fs-2"><strong>Total</strong> dividido por 2: <strong>$<%= (totalGastos / 2).toLocaleString() %></strong></p>
       </div>
     
