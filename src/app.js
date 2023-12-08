@@ -31,8 +31,9 @@ app.use(express.json());
 app.use(session({
     resave: false,
     saveUninitialized: false,
-    secret: 'los gatitos son lo mejor',       
+    secret: process.env.SECRET,       
 }));
+
 app.use(methodOverride('_method'));
 //REQUERIMOS EL ROUTEADOR PRINCIPAL
 

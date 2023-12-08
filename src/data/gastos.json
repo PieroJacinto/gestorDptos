@@ -2,7 +2,7 @@
   {
     "id": 1701975364257,
     "tipoGasto": "gas",
-    "precio": "2400",
+    "precio": "2",
     "year": "2023",
     "month": "12",
     "departamento": "Las-Heras"
@@ -34,7 +34,7 @@
   {
     "id": 1702009608724,
     "tipoGasto": "gas",
-    "precio": "11222",
+    "precio": "122",
     "year": "2023",
     "month": "12",
     "departamento": "Mansilla"
