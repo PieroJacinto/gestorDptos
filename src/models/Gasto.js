@@ -29,11 +29,12 @@ const Gasto = {
         };
         gastos.push(newGasto);
         writeFileSync(Gasto.file, JSON.stringify(gastos, null, 2));
-  },
+    },
+  
     delete: function (id) {
         let allGastos = Gasto.index();
         let finalGastos = allGastos.filter(oneGasto => oneGasto.id !== id);
-        fs.writeFileSync(this.filename, JSON.stringify(finalGastos, null, 4))
+        fs.writeFileSync(Gasto.file, JSON.stringify(finalGastos, null, 4))
         return true
     }
 }

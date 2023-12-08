@@ -15,7 +15,7 @@
       style="margin-top: 6rem; padding-right: 6rem; padding-left: 6rem"
     >
       <div class="row">
-        <% if (user.admin=="full-admin" ) { %>
+        <% if (locals.userLogged.admin=="full-admin" ) { %>
         <div class="col-12 mb-4">
           <div class="card d-flex rounded">
             <a href="/calendario/Mansilla">
@@ -70,7 +70,7 @@
             </div>
           </div>
 
-        <% } %> <% if (user.admin=="las-heras-admin" ) { %>
+        <% } %> <% if (locals.userLogged.admin=="las-heras-admin" ) { %>
         <div class="col-12 mb-4">
           <div class="card d-flex rounded">
             <a href="/calendario/Las-Heras">
@@ -91,7 +91,7 @@
 
         <% } %>
 
-        <% if (user.admin=="corrientes-admin" ) { %>
+        <% if (locals.userLogged=="corrientes-admin" ) { %>
             <div class="col-12 mb-4">
                 <div class="card d-flex rounded">
                   <a href="/calendario/Corrientes">

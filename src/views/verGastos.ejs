@@ -19,11 +19,7 @@
       background-color: #ffffff; /* Cambia el color de fondo a blanco */
     }
 
-    /* Estilos para el botón de submit */
-    button[type="submit"] {
-      background-color: #007bff; /* Color de fondo del botón */
-      color: #ffffff; /* Color del texto del botón */
-    }
+   
 
   </style>
 </head>
@@ -86,11 +82,12 @@
             <td><%= meses[gasto.month - 1].toLocaleString() %></td>
             <td><%= gasto.departamento.toLocaleString() %></td>
             <td class="d-flex">
-              <form action="" style="padding-right: 1rem;" >
-                  <a href="/gasto/<%= gasto.id %>/delete" class="btn mr-2 fs-4 btn-danger" role="button" aria-pressed="true">
-                      <i class="fa-solid fa-trash-can"></i> Eliminar
-                  </a>
+              <form action="/gasto/<%= gasto.id %>/delete?_method=DELETE" method="POST" style="padding-right: 1rem;">               
+                <button type="submit" class="btn mr-2 fs-4 btn-danger" role="button" aria-pressed="true">
+                  <i class="fa-solid fa-trash-can"></i> Eliminar
+                </button>
               </form>
+              
             <a href="/gasto/<%= gasto.id %>/update" class="btn btn-success fs-4" role="button" aria-pressed="true">
               <i class="fa-solid fa-arrow-rotate-left"></i>Actualizar
             </a>

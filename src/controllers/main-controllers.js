@@ -341,7 +341,7 @@ module.exports = {
       const gasto = await Gasto.findByPk(req.params.id);
       console.log("gasto to upd: ", gasto)
       if (!gasto) {
-        return res.status(404).send('Gasto no encontrado');
+        return res.status(404).send('Gasto no encontrado VISTA');
       }
       res.render('actualizarGasto', { gasto }); // Reemplaza 'actualizarGasto' con el nombre de tu vista para actualizar gastos
     } catch (error) {
@@ -350,19 +350,66 @@ module.exports = {
     }
   }, 
   updateGasto: async (req, res) => {
-    console.log(req.params.id)
+    const gastoId = parseInt(req.params.id, 10);
     
-  }, 
-  deleteGasto: (req, res) => {
-    console.log("estoy en destroy");
-    const gastos = Gasto.index();
-    const id = req.params.id;
-    const gastosRestantes = gastos.filter((gasto) => gasto.id != id);
-    const gastosGuardar = JSON.stringify(gastosRestantes, null, 2);
-    fs.writeFileSync(
-      path.resolve(__dirname, "../data/gastos.json"),
-      gastosGuardar
-    );
-    res.redirect("/");
+    try {
+        // Obtén todos los gastos
+        const allGastos = Gasto.index();
+
+        // Encuentra el índice del gasto a actualizar
+        const indexToUpdate = allGastos.findIndex((gasto) => gasto.id === gastoId);
+
+        if (indexToUpdate === -1) {
+            res.status(404).send("Gasto no encontrado");
+            return;
+        }
+
+        // Actualiza el gasto existente con los nuevos datos del cuerpo de la solicitud
+        allGastos[indexToUpdate] = {
+            ...allGastos[indexToUpdate],
+            ...req.body,
+            id: gastoId, // Aseguramos que el ID no se modifique
+        };
+
+        // Guarda la lista de gastos actualizada
+        fs.writeFileSync(
+            path.resolve(__dirname, "../data/gastos.json"),
+            JSON.stringify(allGastos, null, 2)
+        );
+        req.session.userLogged.admin === "full-admin" ? res.redirect("/all/gastos") : res.redirect("/ver/gastos")
+    } catch (error) {
+        console.error("Error al editar el gasto:", error.message);
+        res.status(500).send("Error interno al editar el gasto");
+    }
+},
+
+deleteGasto: (req, res) => {
+  try {
+      const gastos = Gasto.index();
+      const id = req.params.id;
+
+      // Filtrar el gasto a eliminar
+      const gastoAEliminar = gastos.find((gasto) => gasto.id == id);
+
+      if (!gastoAEliminar) {
+          return res.status(404).send('Gasto no encontrado');
+      }
+
+      // Filtrar los gastos restantes
+      const gastosRestantes = gastos.filter((gasto) => gasto.id != id);
+
+      // Guardar los gastos restantes
+      const gastosGuardar = JSON.stringify(gastosRestantes, null, 2);
+      fs.writeFileSync(
+          path.resolve(__dirname, "../data/gastos.json"),
+          gastosGuardar
+      );
+
+      req.session.userLogged.admin === "full-admin" ? res.redirect("/all/gastos") : res.redirect("/ver/gastos")
+  } catch (error) {
+      console.error("Error al eliminar el gasto:", error.message);
+      res.status(500).send("Error interno al eliminar el gasto");
   }
+}
+
 };
